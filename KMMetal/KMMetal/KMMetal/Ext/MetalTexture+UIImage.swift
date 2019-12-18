@@ -26,7 +26,7 @@ extension UIImage {
                                       bitsPerComponent: bitsPerComponent,
                                       bytesPerRow: rowBytes,
                                       space: colorSpace,
-                                      bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGImageByteOrderInfo.order32Little.rawValue) else {
+                                      bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGImageByteOrderInfo.order32Big.rawValue) else {
             return nil
         }
         
