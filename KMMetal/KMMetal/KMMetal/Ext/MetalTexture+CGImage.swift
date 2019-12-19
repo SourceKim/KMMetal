@@ -54,6 +54,7 @@ extension CGImage {
 
         let texDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .rgba8Unorm, width: width, height: height, mipmapped: false)
 
+        texDescriptor.usage = [.shaderRead, .shaderWrite]
         let texture = device.makeTexture(descriptor: texDescriptor)
 
         guard let pixelsData = context.data else { return nil }

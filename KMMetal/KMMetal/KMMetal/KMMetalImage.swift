@@ -8,11 +8,17 @@
 import UIKit
 
 class KMMetalImage: KMMetalOutput {
+    func clearTexture() {
+        self.lock.wait()
+        self.internal_texture = nil
+        self.lock.signal()
+    }
+    
     
     var childs = [KMMetalInput]()
     
     private var internal_texture: MTLTexture? // 内部使用
-    private var texture: MTLTexture? // 外部传值修改
+    var texture: MTLTexture? // 外部传值修改
     
     private let lock = DispatchSemaphore(value: 1)
     
@@ -25,10 +31,11 @@ class KMMetalImage: KMMetalOutput {
     }
     
     @discardableResult
-    func add(output: KMMetalInput) -> Self {
+    func add(input: KMMetalInput) -> Self {
         self.lock.wait()
-        self.childs.append(output)
+        self.childs.append(input)
         self.lock.signal()
+        input.addFather(output: self)
         return self
     }
     

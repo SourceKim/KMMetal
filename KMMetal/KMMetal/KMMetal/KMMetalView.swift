@@ -9,7 +9,7 @@ import UIKit
 import MetalKit
 
 class KMMetalView: MTKView, KMMetalInput {
-    
+
     private let lock = DispatchSemaphore(value: 1)
     
     var rotation = KMTextureRotation.Rotate0Degrees
@@ -63,6 +63,9 @@ class KMMetalView: MTKView, KMMetalInput {
         self.isFrontCamera = texture.cameraPosition == .front
         self.draw()
         self.lock.signal()
+    }
+    
+    func addFather(output: KMMetalOutput) {
     }
     
     func onProcessEnd() {
