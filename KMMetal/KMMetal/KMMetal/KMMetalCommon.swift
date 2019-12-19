@@ -19,7 +19,7 @@ protocol KMMetalInput {
 }
 
 protocol KMMetalOutput {
-    func add(output: KMMetalInput) -> Self
+    @discardableResult func add(output: KMMetalInput) -> Self
 }
 
 enum KMTextureRotation {

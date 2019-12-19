@@ -14,5 +14,4 @@ struct KMTexture: KMMetalTexture {
     
     var cameraPosition: AVCaptureDevice.Position?
     
-
 }

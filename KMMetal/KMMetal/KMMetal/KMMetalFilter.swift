@@ -9,7 +9,7 @@ import UIKit
 
 class KMMetalFilter {
     
-//    var pipelineState: MTLRenderPipelineState
+    var pipelineState: MTLRenderPipelineState?
 
 //    init(device: MTLDevice, vetexName: String? = nil, fragmentName: String) {
 //

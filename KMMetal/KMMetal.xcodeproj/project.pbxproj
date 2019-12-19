@@ -24,6 +24,8 @@
 		3BE01CB623AA1E5B0057B987 /* KMMetalShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE01CB523AA1E5B0057B987 /* KMMetalShared.swift */; };
 		3BFA509823AA250300238AA3 /* KMTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA509723AA250300238AA3 /* KMTexture.swift */; };
 		3BFA509A23AA27F200238AA3 /* PassthroughShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA509923AA27F200238AA3 /* PassthroughShaders.metal */; };
+		3BFA50A023AB4C1500238AA3 /* KMMetalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA509F23AB4C1500238AA3 /* KMMetalImage.swift */; };
+		3BFA50A223AB53FB00238AA3 /* MetalTexture+CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA50A123AB53FB00238AA3 /* MetalTexture+CGImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		3BE01CB523AA1E5B0057B987 /* KMMetalShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalShared.swift; sourceTree = "<group>"; };
 		3BFA509723AA250300238AA3 /* KMTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMTexture.swift; sourceTree = "<group>"; };
 		3BFA509923AA27F200238AA3 /* PassthroughShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = PassthroughShaders.metal; sourceTree = "<group>"; };
+		3BFA509F23AB4C1500238AA3 /* KMMetalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalImage.swift; sourceTree = "<group>"; };
+		3BFA50A123AB53FB00238AA3 /* MetalTexture+CGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MetalTexture+CGImage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 				3BE01CB523AA1E5B0057B987 /* KMMetalShared.swift */,
 				3BFA509723AA250300238AA3 /* KMTexture.swift */,
 				3BFA509923AA27F200238AA3 /* PassthroughShaders.metal */,
+				3BFA509F23AB4C1500238AA3 /* KMMetalImage.swift */,
 			);
 			path = KMMetal;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				3B0871E723A884A70082DC2D /* MetalTexture+UIImage.swift */,
+				3BFA50A123AB53FB00238AA3 /* MetalTexture+CGImage.swift */,
 			);
 			path = Ext;
 			sourceTree = "<group>";
@@ -207,6 +213,8 @@
 				3BFA509823AA250300238AA3 /* KMTexture.swift in Sources */,
 				3B0871C723A879BA0082DC2D /* ViewController.swift in Sources */,
 				3B0871C323A879BA0082DC2D /* AppDelegate.swift in Sources */,
+				3BFA50A023AB4C1500238AA3 /* KMMetalImage.swift in Sources */,
+				3BFA50A223AB53FB00238AA3 /* MetalTexture+CGImage.swift in Sources */,
 				3BE01CAB23A8BB820057B987 /* KMMetalCommon.swift in Sources */,
 				3B0871EA23A889B20082DC2D /* KMMetalFilter.swift in Sources */,
 			);
@@ -344,6 +352,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NYQACL8B77;
 				INFOPLIST_FILE = KMMetal/Info.plist;
@@ -354,6 +363,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kedc.KMMetal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -363,6 +373,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NYQACL8B77;
 				INFOPLIST_FILE = KMMetal/Info.plist;
@@ -373,6 +384,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kedc.KMMetal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
