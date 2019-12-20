@@ -24,6 +24,7 @@ class KMMetalView: MTKView, KMMetalInput {
     var textureContentMode = KMTextureContentMode.AspectRatioFit
     private var internal_textureContentMode = KMTextureContentMode.AspectRatioFit
     
+    private var frameSize: CGSize
     private var internal_frameSize: CGSize
     
     private var oldTextureWidth = 0
@@ -34,9 +35,22 @@ class KMMetalView: MTKView, KMMetalInput {
     
     private var pipeline: MTLRenderPipelineState?
     private var texture: MTLTexture?
+    
+    override var frame: CGRect {
+        get {
+            return super.frame
+        }
+        set {
+            super.frame = newValue
+            self.lock.wait()
+            self.frameSize = newValue.size
+            self.lock.signal()
+        }
+    }
 
     init(frame frameRect: CGRect) {
         self.internal_frameSize = frameRect.size
+        self.frameSize = frameRect.size
         super.init(frame: frameRect, device: KMMetalShared.shared.device)
         super.isPaused = true
         
@@ -105,7 +119,7 @@ class KMMetalView: MTKView, KMMetalInput {
     
     private func updateVertexBufferIfNeed(texture: MTLTexture) {
         
-        if self.frame.size != self.internal_frameSize ||
+        if self.frameSize != self.internal_frameSize ||
             self.oldTextureWidth != texture.width ||
             self.oldTextureHeight != texture.height ||
             self.isFrontCamera != self.internal_isFrontCamera ||
