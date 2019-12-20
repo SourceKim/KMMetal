@@ -39,7 +39,14 @@ class KMMetalFilter: KMMetalInput, KMMetalOutput {
 
     }
     
+    /// 子类重写
+    func updateUniforms(encoder: MTLComputeCommandEncoder) {
+        
+    }
+    
     func next(texture: KMMetalTexture) {
+        
+//        MTLCaptureManager.shared().startCapture(commandQueue: KMMetalShared.shared.queue)
         
         self.lock.wait()
         let ps = self.parents
@@ -71,11 +78,15 @@ class KMMetalFilter: KMMetalInput, KMMetalOutput {
             idx += 1
         }
         
+        self.updateUniforms(encoder: encoder)
+        
         encoder.dispatchThreadgroups(self.threadgroupsPerGrid!, threadsPerThreadgroup: self.threadsPerThreadgroup)
         encoder.endEncoding()
         
         commandBuffer.commit()
         commandBuffer.waitUntilCompleted()
+        
+//        MTLCaptureManager.shared().stopCapture()
         
         // 清除 parents 的 texture
         self.clearTexture()

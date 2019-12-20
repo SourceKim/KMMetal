@@ -8,8 +8,15 @@
 import UIKit
 
 class KMBrightnessFilter: KMMetalFilter {
+    
+    var brightness: Float
 
     init() {
+        self.brightness = 0.3
         super.init(kernelName: "brightnessKernel")!
+    }
+    
+    override func updateUniforms(encoder: MTLComputeCommandEncoder) {
+        encoder.setBytes(&brightness, length: MemoryLayout<Float>.size, index: 0)
     }
 }
