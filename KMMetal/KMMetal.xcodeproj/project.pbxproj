@@ -24,6 +24,13 @@
 		3B1242B823AB9793008574AF /* KMBrightnessFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242B723AB9793008574AF /* KMBrightnessFilter.swift */; };
 		3B1242BA23AB99AE008574AF /* KMMetalCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242B923AB99AE008574AF /* KMMetalCamera.swift */; };
 		3B1242BC23AC729B008574AF /* MetalTexture+CMSampleBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242BB23AC729B008574AF /* MetalTexture+CMSampleBuffer.swift */; };
+		3B4479ED23AE0EE200A32F4C /* lookup.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B4479E823AE0EE200A32F4C /* lookup.png */; };
+		3B4479EE23AE0EE200A32F4C /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B4479E923AE0EE200A32F4C /* lookup_miss_etikate.png */; };
+		3B4479EF23AE0EE200A32F4C /* lookup_soft_elegance_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B4479EA23AE0EE200A32F4C /* lookup_soft_elegance_1.png */; };
+		3B4479F023AE0EE200A32F4C /* lookup_amatorka.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B4479EB23AE0EE200A32F4C /* lookup_amatorka.png */; };
+		3B4479F123AE0EE200A32F4C /* lookup_soft_elegance_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B4479EC23AE0EE200A32F4C /* lookup_soft_elegance_2.png */; };
+		3BCBBBD123ADF24B0056D749 /* KMLookUpFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCBBBD023ADF24B0056D749 /* KMLookUpFilter.swift */; };
+		3BCBBBD323ADF2C70056D749 /* KMLookUpFilterKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3BCBBBD223ADF2C70056D749 /* KMLookUpFilterKernel.metal */; };
 		3BE01CAB23A8BB820057B987 /* KMMetalCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE01CAA23A8BB820057B987 /* KMMetalCommon.swift */; };
 		3BE01CB623AA1E5B0057B987 /* KMMetalShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE01CB523AA1E5B0057B987 /* KMMetalShared.swift */; };
 		3BFA509823AA250300238AA3 /* KMTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA509723AA250300238AA3 /* KMTexture.swift */; };
@@ -52,6 +59,13 @@
 		3B1242B723AB9793008574AF /* KMBrightnessFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMBrightnessFilter.swift; sourceTree = "<group>"; };
 		3B1242B923AB99AE008574AF /* KMMetalCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalCamera.swift; sourceTree = "<group>"; };
 		3B1242BB23AC729B008574AF /* MetalTexture+CMSampleBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MetalTexture+CMSampleBuffer.swift"; sourceTree = "<group>"; };
+		3B4479E823AE0EE200A32F4C /* lookup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup.png; sourceTree = "<group>"; };
+		3B4479E923AE0EE200A32F4C /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
+		3B4479EA23AE0EE200A32F4C /* lookup_soft_elegance_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_soft_elegance_1.png; sourceTree = "<group>"; };
+		3B4479EB23AE0EE200A32F4C /* lookup_amatorka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_amatorka.png; sourceTree = "<group>"; };
+		3B4479EC23AE0EE200A32F4C /* lookup_soft_elegance_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_soft_elegance_2.png; sourceTree = "<group>"; };
+		3BCBBBD023ADF24B0056D749 /* KMLookUpFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMLookUpFilter.swift; sourceTree = "<group>"; };
+		3BCBBBD223ADF2C70056D749 /* KMLookUpFilterKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMLookUpFilterKernel.metal; sourceTree = "<group>"; };
 		3BE01CAA23A8BB820057B987 /* KMMetalCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalCommon.swift; sourceTree = "<group>"; };
 		3BE01CB523AA1E5B0057B987 /* KMMetalShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalShared.swift; sourceTree = "<group>"; };
 		3BFA509723AA250300238AA3 /* KMTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMTexture.swift; sourceTree = "<group>"; };
@@ -127,6 +141,11 @@
 				3B0871DC23A8834C0082DC2D /* img2.png */,
 				3B0871DD23A8834C0082DC2D /* img0.png */,
 				3B0871DE23A8834C0082DC2D /* img1.png */,
+				3B4479EB23AE0EE200A32F4C /* lookup_amatorka.png */,
+				3B4479E923AE0EE200A32F4C /* lookup_miss_etikate.png */,
+				3B4479EA23AE0EE200A32F4C /* lookup_soft_elegance_1.png */,
+				3B4479EC23AE0EE200A32F4C /* lookup_soft_elegance_2.png */,
+				3B4479E823AE0EE200A32F4C /* lookup.png */,
 			);
 			path = res;
 			sourceTree = "<group>";
@@ -146,6 +165,8 @@
 			children = (
 				3B1242B523AB9715008574AF /* BrightnessKernel.metal */,
 				3B1242B723AB9793008574AF /* KMBrightnessFilter.swift */,
+				3BCBBBD023ADF24B0056D749 /* KMLookUpFilter.swift */,
+				3BCBBBD223ADF2C70056D749 /* KMLookUpFilterKernel.metal */,
 			);
 			path = Kernel;
 			sourceTree = "<group>";
@@ -210,11 +231,16 @@
 			files = (
 				3B0871CF23A879BB0082DC2D /* LaunchScreen.storyboard in Resources */,
 				3B0871E123A8834C0082DC2D /* img2.png in Resources */,
+				3B4479F123AE0EE200A32F4C /* lookup_soft_elegance_2.png in Resources */,
 				3B0871E323A8834C0082DC2D /* img1.png in Resources */,
 				3B0871E223A8834C0082DC2D /* img0.png in Resources */,
 				3B0871CC23A879BB0082DC2D /* Assets.xcassets in Resources */,
 				3B0871DF23A8834C0082DC2D /* img4.png in Resources */,
 				3B0871E023A8834C0082DC2D /* img3.png in Resources */,
+				3B4479EF23AE0EE200A32F4C /* lookup_soft_elegance_1.png in Resources */,
+				3B4479ED23AE0EE200A32F4C /* lookup.png in Resources */,
+				3B4479EE23AE0EE200A32F4C /* lookup_miss_etikate.png in Resources */,
+				3B4479F023AE0EE200A32F4C /* lookup_amatorka.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +253,9 @@
 			files = (
 				3BE01CB623AA1E5B0057B987 /* KMMetalShared.swift in Sources */,
 				3BFA509A23AA27F200238AA3 /* PassthroughShaders.metal in Sources */,
+				3BCBBBD123ADF24B0056D749 /* KMLookUpFilter.swift in Sources */,
 				3B1242B823AB9793008574AF /* KMBrightnessFilter.swift in Sources */,
+				3BCBBBD323ADF2C70056D749 /* KMLookUpFilterKernel.metal in Sources */,
 				3B0871E823A884A70082DC2D /* MetalTexture+UIImage.swift in Sources */,
 				3B1242B623AB9715008574AF /* BrightnessKernel.metal in Sources */,
 				3B1242BC23AC729B008574AF /* MetalTexture+CMSampleBuffer.swift in Sources */,

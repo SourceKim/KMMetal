@@ -15,14 +15,12 @@ protocol KMMetalTexture {
 }
 protocol KMMetalInput {
     func next(texture: KMMetalTexture)
-    func addFather(output: KMMetalOutput)
+    func onBeAdded()
     func onProcessEnd()
 }
 
 protocol KMMetalOutput {
-    var texture: MTLTexture? { get }
     @discardableResult func add(input: KMMetalInput) -> Self
-    func clearTexture()
 }
 
 enum KMTextureRotation {

@@ -8,20 +8,22 @@
 import UIKit
 
 class KMMetalFilter: KMMetalInput, KMMetalOutput {
-    func clearTexture() {
+    func onBeAdded() {
         self.lock.wait()
-        self.texture = nil
+        self.parentCount += 1
         self.lock.signal()
     }
     
-    var texture: MTLTexture?
+    private var outputTexture: MTLTexture?
     
     let pipelineState: MTLComputePipelineState
     let threadsPerThreadgroup: MTLSize
     var threadgroupsPerGrid: MTLSize?
     
     var childs = [KMMetalInput]()
-    private var parents = [KMMetalOutput]()
+    
+    private var parentTextures = [KMMetalTexture]()
+    private var parentCount = 0
     
     private let lock = DispatchSemaphore(value: 1)
 
@@ -49,10 +51,17 @@ class KMMetalFilter: KMMetalInput, KMMetalOutput {
 //        MTLCaptureManager.shared().startCapture(commandQueue: KMMetalShared.shared.queue)
         
         self.lock.wait()
-        let ps = self.parents
+        self.parentTextures.append(texture)
+        let ps = self.parentTextures
+        let parentCount = self.parentCount
         self.lock.signal()
         
-        guard let parentsTextures = self.checkIsParentsReady(parents: ps) else { return }
+        // Check is textures all ready
+        if ps.count != parentCount {
+            self.lock.wait()
+            self.lock.signal()
+            return
+        }
         
         // todo, 考虑 resize filter
         
@@ -63,7 +72,25 @@ class KMMetalFilter: KMMetalInput, KMMetalOutput {
         let w = self.threadsPerThreadgroup.width
         let h = self.threadsPerThreadgroup.height
         
-        guard let firstTexture = parentsTextures.first else { return }
+        guard let firstTexture = ps.first?.texture else { return }
+        
+        // 重新创建 OutputTexture
+        self.lock.wait()
+        if self.outputTexture == nil ||
+            self.outputTexture?.width != firstTexture.width ||
+            self.outputTexture?.height != firstTexture.height {
+            let desc = MTLTextureDescriptor()
+            desc.pixelFormat = .rgba8Unorm
+            desc.width = firstTexture.width
+            desc.height = firstTexture.height
+            desc.usage = [.shaderRead, .shaderWrite]
+            if let o = KMMetalShared.shared.device.makeTexture(descriptor: desc) {
+                self.outputTexture = o
+            } else {
+                self.lock.signal()
+                return
+            }
+        }
             
         self.threadgroupsPerGrid = MTLSize(width: (firstTexture.width + w - 1) / w,
                                            height: (firstTexture.height + h - 1) / h,
@@ -72,9 +99,10 @@ class KMMetalFilter: KMMetalInput, KMMetalOutput {
         guard let encoder = commandBuffer.makeComputeCommandEncoder() else { return }
         
         encoder.setComputePipelineState(self.pipelineState)
-        var idx = 0
-        for texture in parentsTextures {
-            encoder.setTexture(texture, index: idx)
+        encoder.setTexture(self.outputTexture, index: 0)
+        var idx = 1
+        for texture in ps {
+            encoder.setTexture(texture.texture, index: idx)
             idx += 1
         }
         
@@ -89,11 +117,16 @@ class KMMetalFilter: KMMetalInput, KMMetalOutput {
 //        MTLCaptureManager.shared().stopCapture()
         
         // 清除 parents 的 texture
-        self.clearTexture()
-        self.texture = firstTexture
+        self.parentTextures.removeAll()
+        guard let ot = self.outputTexture else {
+            self.lock.signal()
+            return
+        }
+        let outkmt = KMTexture(texture: ot, cameraPosition: nil)
+        self.lock.signal()
         
         for child in self.childs {
-            child.next(texture: KMTexture(texture: firstTexture, cameraPosition: nil))
+            child.next(texture: outkmt)
         }
         
     }
@@ -106,35 +139,8 @@ class KMMetalFilter: KMMetalInput, KMMetalOutput {
         self.lock.wait()
         self.childs.append(input)
         self.lock.signal()
-        input.addFather(output: self)
+        input.onBeAdded()
         return self
-    }
-    
-    func addFather(output: KMMetalOutput) {
-        self.lock.wait()
-        self.parents.append(output)
-        self.lock.signal()
-    }
-    
-    /// Check is all parents output's textures are ready, will return the first output
-    private func checkIsParentsReady(parents: [KMMetalOutput]) -> [MTLTexture]? {
-        
-        let parentsAvailableTextures = parents.compactMap { (op) -> MTLTexture? in
-            return op.texture
-        }
-        
-        guard parentsAvailableTextures.count == parents.count else {
-            print("Not all parents' textures are available")
-            return nil
-        }
-        
-        return parentsAvailableTextures
-    }
-    
-    private func cleanParentsTexture() {
-        for parent in self.parents {
-            parent.clearTexture()
-        }
     }
 
 }

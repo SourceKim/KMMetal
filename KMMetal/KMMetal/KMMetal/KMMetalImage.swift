@@ -35,7 +35,7 @@ class KMMetalImage: KMMetalOutput {
         self.lock.wait()
         self.childs.append(input)
         self.lock.signal()
-        input.addFather(output: self)
+        input.onBeAdded()
         return self
     }
     

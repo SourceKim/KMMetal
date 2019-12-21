@@ -9,7 +9,9 @@ import UIKit
 import MetalKit
 
 class KMMetalView: MTKView, KMMetalInput {
-
+    func onBeAdded() {
+        
+    }
     private let lock = DispatchSemaphore(value: 1)
     
     var rotation = KMTextureRotation.Rotate0Degrees
@@ -96,6 +98,8 @@ class KMMetalView: MTKView, KMMetalInput {
                 return
         }
         
+//        MTLCaptureManager.shared().startCapture(commandQueue: KMMetalShared.shared.queue)
+        
         self.drawableSize = CGSize(width: texture.width, height: texture.height)
         
         self.updateVertexBufferIfNeed(texture: texture)
@@ -115,6 +119,8 @@ class KMMetalView: MTKView, KMMetalInput {
         commandBuffer.present(drawable)
         
         commandBuffer.commit()
+        
+//        MTLCaptureManager.shared().stopCapture()
     }
     
     private func updateVertexBufferIfNeed(texture: MTLTexture) {
