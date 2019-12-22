@@ -26,8 +26,8 @@ class KMMetalView: MTKView, KMMetalInput {
     var textureContentMode = KMTextureContentMode.AspectRatioFit
     private var internal_textureContentMode = KMTextureContentMode.AspectRatioFit
     
-    private var frameSize: CGSize
-    private var internal_frameSize: CGSize
+    private var frameSize: CGSize = .zero
+    private var internal_frameSize: CGSize = .zero
     
     private var oldTextureWidth = 0
     private var oldTextureHeight = 0
@@ -37,23 +37,9 @@ class KMMetalView: MTKView, KMMetalInput {
     
     private var pipeline: MTLRenderPipelineState?
     private var texture: MTLTexture?
-    
-    override var frame: CGRect {
-        get {
-            return super.frame
-        }
-        set {
-            super.frame = newValue
-            self.lock.wait()
-            self.frameSize = newValue.size
-            self.lock.signal()
-        }
-    }
 
-    init(frame frameRect: CGRect) {
-        self.internal_frameSize = frameRect.size
-        self.frameSize = frameRect.size
-        super.init(frame: frameRect, device: KMMetalShared.shared.device)
+    init() {
+        super.init(frame: .zero, device: KMMetalShared.shared.device)
         super.isPaused = true
         
         if let library = self.device?.makeDefaultLibrary(),
@@ -67,6 +53,14 @@ class KMMetalView: MTKView, KMMetalInput {
                 self.pipeline = state
             }
         }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.lock.wait()
+        self.frameSize = self.bounds.size
+        self.lock.signal()
     }
     
     required init(coder: NSCoder) {
@@ -133,7 +127,7 @@ class KMMetalView: MTKView, KMMetalInput {
             self.rotation != self.internal_rotation ||
             self.textureContentMode != self.internal_textureContentMode {
             
-            self.internal_frameSize = self.frame.size
+            self.internal_frameSize = self.frameSize
             self.oldTextureWidth = texture.width
             self.oldTextureHeight = texture.height
             self.internal_isFrontCamera = self.isFrontCamera
