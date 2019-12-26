@@ -11,17 +11,17 @@ class ViewController: UIViewController {
     
     private let camera = KMMetalCamera()
     private let sourceImage = KMMetalImage(uiImage: UIImage(named: "img0.png")!)
-    private lazy var metalView = KMMetalView(frame: self.view.bounds)
+    private lazy var metalView = KMMetalView()
     private let brightnessKernel = KMBrightnessFilter()
-    private let lookupKernel = KMLookUpFilter()
+//    private let lookupKernel = KMLookUpFilter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.camera?.add(input: self.lookupKernel)
-        self.lookupKernel.setLutImage(uiImage: UIImage(named: "lookup_amatorka.png")!)
+//        self.camera?.add(input: self.lookupKernel)
+//        self.lookupKernel.setLutImage(uiImage: UIImage(named: "lookup_amatorka.png")!)
 //        self.sourceImage.add(input: self.lookupKernel)
-        self.lookupKernel.add(input: self.metalView)
+//        self.lookupKernel.add(input: self.metalView)
 //        self.sourceImage.add(input: self.metalView)
         self.view.addSubview(self.metalView)
         

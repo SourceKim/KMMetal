@@ -7,12 +7,18 @@
 
 import UIKit
 
-class KMBrightnessFilter: KMMetalFilter {
+class KMBrightnessFilter: KMMetalFilter, KMMetalOneParameterFilter {
     
-    var brightness: Float
+    var maxValue: Float = 1
+    
+    var minValue: Float = -1
+    
+    var defaultValue: Float = 0
+    
+    var brightness: Float = 0
 
     init() {
-        self.brightness = 0.3
+        
         super.init(kernelName: "brightnessKernel")!
     }
     

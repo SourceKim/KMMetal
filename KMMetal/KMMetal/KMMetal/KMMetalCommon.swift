@@ -23,6 +23,12 @@ protocol KMMetalOutput {
     @discardableResult func add(input: KMMetalInput) -> Self
 }
 
+protocol KMMetalOneParameterFilter {
+    var maxValue: Float { get set }
+    var minValue: Float { get set }
+    var defaultValue: Float { get set }
+}
+
 enum KMTextureRotation {
     case Rotate0Degrees
     case Rotate90Degrees

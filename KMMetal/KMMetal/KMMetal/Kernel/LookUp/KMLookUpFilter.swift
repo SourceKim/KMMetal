@@ -7,7 +7,13 @@
 
 import UIKit
 
-class KMLookUpFilter: KMMetalFilter {
+class KMLookUpFilter: KMMetalFilter, KMMetalOneParameterFilter {
+    
+    var maxValue: Float = 1
+    
+    var minValue: Float = 0
+    
+    var defaultValue: Float = 1
 
     var intensity: Float
     
@@ -16,6 +22,7 @@ class KMLookUpFilter: KMMetalFilter {
     init(lookUpTexture: MTLTexture? = nil) {
         
         self.intensity = 1
+        
         if let t = lookUpTexture {
             self.lookUpTexture = t
         } else {
