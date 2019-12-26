@@ -20,6 +20,10 @@
 		3B0871E523A8845F0082DC2D /* KMMetalResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0871E423A8845F0082DC2D /* KMMetalResourceLoader.swift */; };
 		3B0871E823A884A70082DC2D /* MetalTexture+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0871E723A884A70082DC2D /* MetalTexture+UIImage.swift */; };
 		3B0871EA23A889B20082DC2D /* KMMetalFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0871E923A889B20082DC2D /* KMMetalFilter.swift */; };
+		3B0C7FDF23B5099000222528 /* KMThinFaceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C7FDD23B5098F00222528 /* KMThinFaceFilter.swift */; };
+		3B0C7FE023B5099000222528 /* KMThinFaceKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C7FDE23B5098F00222528 /* KMThinFaceKernel.metal */; };
+		3B0C7FE423B509DA00222528 /* KMFaceDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C7FE223B509DA00222528 /* KMFaceDetector.swift */; };
+		3B0C7FE523B509DA00222528 /* CGAffineTransform+Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C7FE323B509DA00222528 /* CGAffineTransform+Matrix.swift */; };
 		3B1242B623AB9715008574AF /* KMBrightnessKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242B523AB9715008574AF /* KMBrightnessKernel.metal */; };
 		3B1242B823AB9793008574AF /* KMBrightnessFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242B723AB9793008574AF /* KMBrightnessFilter.swift */; };
 		3B1242BA23AB99AE008574AF /* KMMetalCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242B923AB99AE008574AF /* KMMetalCamera.swift */; };
@@ -42,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B03EE7723B102330092DEA6 /* KMThinFaceFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMThinFaceFilter.swift; sourceTree = "<group>"; };
+		3B03EE7923B102470092DEA6 /* KMThinFaceKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMThinFaceKernel.metal; sourceTree = "<group>"; };
 		3B0871BF23A879BA0082DC2D /* KMMetal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KMMetal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B0871C223A879BA0082DC2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B0871C623A879BA0082DC2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +63,10 @@
 		3B0871E423A8845F0082DC2D /* KMMetalResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalResourceLoader.swift; sourceTree = "<group>"; };
 		3B0871E723A884A70082DC2D /* MetalTexture+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MetalTexture+UIImage.swift"; sourceTree = "<group>"; };
 		3B0871E923A889B20082DC2D /* KMMetalFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalFilter.swift; sourceTree = "<group>"; };
+		3B0C7FDD23B5098F00222528 /* KMThinFaceFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMThinFaceFilter.swift; sourceTree = "<group>"; };
+		3B0C7FDE23B5098F00222528 /* KMThinFaceKernel.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = KMThinFaceKernel.metal; sourceTree = "<group>"; };
+		3B0C7FE223B509DA00222528 /* KMFaceDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMFaceDetector.swift; sourceTree = "<group>"; };
+		3B0C7FE323B509DA00222528 /* CGAffineTransform+Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Matrix.swift"; sourceTree = "<group>"; };
 		3B1242B523AB9715008574AF /* KMBrightnessKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMBrightnessKernel.metal; sourceTree = "<group>"; };
 		3B1242B723AB9793008574AF /* KMBrightnessFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMBrightnessFilter.swift; sourceTree = "<group>"; };
 		3B1242B923AB99AE008574AF /* KMMetalCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalCamera.swift; sourceTree = "<group>"; };
@@ -89,6 +99,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B03EE7623B102050092DEA6 /* ThinFace */ = {
+			isa = PBXGroup;
+			children = (
+				3B03EE7723B102330092DEA6 /* KMThinFaceFilter.swift */,
+				3B03EE7923B102470092DEA6 /* KMThinFaceKernel.metal */,
+			);
+			path = ThinFace;
+			sourceTree = "<group>";
+		};
 		3B0871B623A879BA0082DC2D = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +127,7 @@
 		3B0871C123A879BA0082DC2D /* KMMetal */ = {
 			isa = PBXGroup;
 			children = (
+				3B0C7FE123B509DA00222528 /* KMFaceDetector */,
 				3B0871D923A8834C0082DC2D /* res */,
 				3B0871D623A882130082DC2D /* KMMetal */,
 				3B0871C223A879BA0082DC2D /* AppDelegate.swift */,
@@ -164,9 +184,28 @@
 			path = Ext;
 			sourceTree = "<group>";
 		};
+		3B0C7FDC23B5098F00222528 /* ThinFace */ = {
+			isa = PBXGroup;
+			children = (
+				3B0C7FDD23B5098F00222528 /* KMThinFaceFilter.swift */,
+				3B0C7FDE23B5098F00222528 /* KMThinFaceKernel.metal */,
+			);
+			path = ThinFace;
+			sourceTree = "<group>";
+		};
+		3B0C7FE123B509DA00222528 /* KMFaceDetector */ = {
+			isa = PBXGroup;
+			children = (
+				3B0C7FE223B509DA00222528 /* KMFaceDetector.swift */,
+				3B0C7FE323B509DA00222528 /* CGAffineTransform+Matrix.swift */,
+			);
+			path = KMFaceDetector;
+			sourceTree = "<group>";
+		};
 		3B1242B423AB96FA008574AF /* Kernel */ = {
 			isa = PBXGroup;
 			children = (
+				3B0C7FDC23B5098F00222528 /* ThinFace */,
 				3B447A4B23B4E81E00A32F4C /* Exposure */,
 				3B447A4A23B4E72900A32F4C /* LookUp */,
 				3B447A4923B4E53900A32F4C /* Brightness */,
@@ -177,6 +216,7 @@
 		3B447A4923B4E53900A32F4C /* Brightness */ = {
 			isa = PBXGroup;
 			children = (
+				3B03EE7623B102050092DEA6 /* ThinFace */,
 				3B1242B523AB9715008574AF /* KMBrightnessKernel.metal */,
 				3B1242B723AB9793008574AF /* KMBrightnessFilter.swift */,
 			);
@@ -281,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B0C7FE523B509DA00222528 /* CGAffineTransform+Matrix.swift in Sources */,
 				3BE01CB623AA1E5B0057B987 /* KMMetalShared.swift in Sources */,
 				3BFA509A23AA27F200238AA3 /* PassthroughShaders.metal in Sources */,
 				3BCBBBD123ADF24B0056D749 /* KMLookUpFilter.swift in Sources */,
@@ -292,12 +333,15 @@
 				3B1242B623AB9715008574AF /* KMBrightnessKernel.metal in Sources */,
 				3B1242BC23AC729B008574AF /* MetalTexture+CMSampleBuffer.swift in Sources */,
 				3B0871E523A8845F0082DC2D /* KMMetalResourceLoader.swift in Sources */,
+				3B0C7FE423B509DA00222528 /* KMFaceDetector.swift in Sources */,
 				3B0871D823A882270082DC2D /* KMMetalView.swift in Sources */,
 				3B1242BA23AB99AE008574AF /* KMMetalCamera.swift in Sources */,
 				3BFA509823AA250300238AA3 /* KMTexture.swift in Sources */,
 				3B0871C723A879BA0082DC2D /* ViewController.swift in Sources */,
 				3B0871C323A879BA0082DC2D /* AppDelegate.swift in Sources */,
+				3B0C7FE023B5099000222528 /* KMThinFaceKernel.metal in Sources */,
 				3BFA50A023AB4C1500238AA3 /* KMMetalImage.swift in Sources */,
+				3B0C7FDF23B5099000222528 /* KMThinFaceFilter.swift in Sources */,
 				3BFA50A223AB53FB00238AA3 /* MetalTexture+CGImage.swift in Sources */,
 				3BE01CAB23A8BB820057B987 /* KMMetalCommon.swift in Sources */,
 				3B0871EA23A889B20082DC2D /* KMMetalFilter.swift in Sources */,

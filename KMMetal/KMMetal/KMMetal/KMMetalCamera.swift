@@ -8,11 +8,17 @@
 import UIKit
 import AVFoundation
 
+protocol KMMetalCameraDelegate: AnyObject {
+    func onCapture(sampleBuffer: CMSampleBuffer)
+}
+
 class KMMetalCamera: NSObject, KMMetalOutput {
     
     var texture: MTLTexture?
     
     var childs = [KMMetalInput]()
+    
+    weak var del: KMMetalCameraDelegate?
     
     func add(input: KMMetalInput) -> Self {
         self.lock.wait()
@@ -59,16 +65,21 @@ class KMMetalCamera: NSObject, KMMetalOutput {
     private var _canTakePhoto = false
     
     private var cameraPosition: AVCaptureDevice.Position
-    private var session: AVCaptureSession
+    var session: AVCaptureSession
     private var device: AVCaptureDevice
     private var input: AVCaptureInput
     private var output: AVCaptureVideoDataOutput
     
-    private var outputQueue = DispatchQueue(label: "com.kedc.KMMetal.videoOutput")
+    private let outputQueue = DispatchQueue(
+      label: "com.kedc.KMMetal.videoOutput",
+      qos: .userInitiated,
+      attributes: [],
+      autoreleaseFrequency: .workItem)
     
     private var textureCache: CVMetalTextureCache!
     
-    init?(cameraPosition: AVCaptureDevice.Position = .back, preset: AVCaptureSession.Preset = .high) {
+    init?(cameraPosition: AVCaptureDevice.Position = .back,
+          preset: AVCaptureSession.Preset = .high) {
         
         guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition),
             let input = try? AVCaptureDeviceInput(device: device) else {
@@ -106,8 +117,7 @@ class KMMetalCamera: NSObject, KMMetalOutput {
         }
         self.session.addOutput(self.output)
         
-        guard let connection = self.output.connections.first,
-            connection.isVideoOrientationSupported else {
+        guard let connection = self.output.connection(with: .video) else {
                 self.session.commitConfiguration()
                 return nil
         }
@@ -134,6 +144,9 @@ class KMMetalCamera: NSObject, KMMetalOutput {
 extension KMMetalCamera: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        
+        self.del?.onCapture(sampleBuffer: sampleBuffer)
+        
         // Video
         self.lock.wait()
         let paused = self._isPause
@@ -157,6 +170,6 @@ extension KMMetalCamera: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     public func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        print(#function)
+//        print(#function)
     }
 }

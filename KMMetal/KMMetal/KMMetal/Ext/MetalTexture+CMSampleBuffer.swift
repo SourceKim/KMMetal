@@ -11,7 +11,7 @@ extension CMSampleBuffer {
     
     func toTexture(with textureCache: CVMetalTextureCache) -> MTLTexture? {
         
-        guard let imageBuffer = CMSampleBufferGetImageBuffer(self) else { return nil }
+        guard let imageBuffer = CMSampleBufferGetImageBuffer(self) else { return nil } // TODO: 优化 & 输出直接用
         
         let width = CVPixelBufferGetWidth(imageBuffer)
         let height = CVPixelBufferGetHeight(imageBuffer)

@@ -53,6 +53,8 @@ class KMMetalView: MTKView, KMMetalInput {
                 self.pipeline = state
             }
         }
+        
+        self.preferredFramesPerSecond = 30
     }
     
     override func layoutSubviews() {
