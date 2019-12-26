@@ -48,6 +48,9 @@ class KMMetalFilter: KMMetalInput, KMMetalOutput {
     
     func next(texture: KMMetalTexture) {
         
+        let manager = MTLCaptureManager.shared()
+        manager.defaultCaptureScope?.begin()
+        
 //        MTLCaptureManager.shared().startCapture(commandQueue: KMMetalShared.shared.queue)
         
         self.lock.wait()
@@ -115,6 +118,7 @@ class KMMetalFilter: KMMetalInput, KMMetalOutput {
         commandBuffer.waitUntilCompleted()
         
 //        MTLCaptureManager.shared().stopCapture()
+        manager.defaultCaptureScope?.end()
         
         // 清除 parents 的 texture
         self.parentTextures.removeAll()
@@ -122,7 +126,7 @@ class KMMetalFilter: KMMetalInput, KMMetalOutput {
             self.lock.signal()
             return
         }
-        let outkmt = KMTexture(texture: ot, cameraPosition: nil)
+        let outkmt = KMTexture(texture: ot, cameraPosition: texture.cameraPosition)
         self.lock.signal()
         
         for child in self.childs {

@@ -33,6 +33,7 @@ class KMThinFaceFilter: KMMetalFilter {
     private var _referencePoint: FloatPoint = .zero
     private var _r: Float = 0
     private var _mc2: Float = 0
+    var intensity: Float = 0
     
     init() {
         super.init(kernelName: "thinFaceKernel")!
@@ -67,6 +68,7 @@ class KMThinFaceFilter: KMMetalFilter {
         encoder.setBytes(&rp, length: MemoryLayout<FloatPoint>.size, index: 1)
         encoder.setBytes(&r, length: MemoryLayout<Float>.size, index: 2)
         encoder.setBytes(&mc2, length: MemoryLayout<FloatPoint>.size, index: 3)
+        encoder.setBytes(&self.intensity, length: MemoryLayout<FloatPoint>.size, index: 4)
         
     }
 }

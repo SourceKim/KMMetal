@@ -16,14 +16,18 @@ kernel void thinFaceKernel(texture2d<float, access::write> outputTexture [[ text
                            constant float2 *endPos [[buffer(1)]],
                            constant float *r [[buffer(2)]],
                            constant float *mc2 [[buffer(3)]],
+                           constant float *intensity [[buffer(4)]],
                            uint2 position [[ thread_position_in_grid ]]) {
     
     float4 color = inputTexture.read(position);
     float2 sp = *startPos;
     float2 ep = *endPos;
+//    if (distance(sp, float2(position.x, position.y)) < *r || distance(ep, float2(position.x, position.y)) < *r) {
+//        color = float4(0);
+//    }
     if (!(abs(position.x - sp.x) > *r) || !(abs(position.y - sp.y) > *r)) { // 优化： 直接判断是否在 startX & startY 矩阵中
 //    if (1) {
-        
+
         // r 平方
         float r2 = pow(*r, 2);
 
@@ -36,7 +40,7 @@ kernel void thinFaceKernel(texture2d<float, access::write> outputTexture [[ text
             float ratio = pow((dis2 - r2) / (dis2 - r2 + *mc2), 2);
 
             // 2. 映射到原位置
-            float2 newPos = float2(position) - ratio * float2(ep - sp);
+            float2 newPos = float2(position) - ratio * float2(ep - sp) * *intensity;
 
             // 3. 双线性插值
             uint2 p1 = uint2(floor(newPos.x), floor(newPos.y));
@@ -59,7 +63,7 @@ kernel void thinFaceKernel(texture2d<float, access::write> outputTexture [[ text
 //            color = float4(float3(0), 1);
 //            inputTexture.write(newColor, position);
         }
-        
+
     }
     
     outputTexture.write(color, position);

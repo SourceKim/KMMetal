@@ -52,7 +52,7 @@ class KMFaceDetector {
             try sequenceHandler.perform(
                 [detectFaceRequest],
                 on: imageBuffer,
-                orientation: .down) // Front camera detecting is 'down'
+                orientation: .downMirrored) // Front camera detecting is 'down' to display (draw views), but is 'downMirrored' to use it in metal!!!!
         } catch {
             print(error.localizedDescription)
         }
