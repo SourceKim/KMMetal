@@ -41,6 +41,8 @@
 		3B447A5F23B5FC6E00A32F4C /* KMContrastKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A5E23B5FC6E00A32F4C /* KMContrastKernel.metal */; };
 		3B447A6223B5FCE100A32F4C /* KMWhiteBalanceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A6123B5FCE100A32F4C /* KMWhiteBalanceFilter.swift */; };
 		3B447A6423B60CAC00A32F4C /* KMWhiteBalanceKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A6323B60CAC00A32F4C /* KMWhiteBalanceKernel.metal */; };
+		3B447A6723B61C0200A32F4C /* KMHighLightShadowFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A6623B61C0200A32F4C /* KMHighLightShadowFilter.swift */; };
+		3B447A6923B61C6900A32F4C /* KMHighLightShadowKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A6823B61C6900A32F4C /* KMHighLightShadowKernel.metal */; };
 		3BCBBBD123ADF24B0056D749 /* KMLookUpFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCBBBD023ADF24B0056D749 /* KMLookUpFilter.swift */; };
 		3BCBBBD323ADF2C70056D749 /* KMLookUpKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3BCBBBD223ADF2C70056D749 /* KMLookUpKernel.metal */; };
 		3BE01CAB23A8BB820057B987 /* KMMetalCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE01CAA23A8BB820057B987 /* KMMetalCommon.swift */; };
@@ -91,6 +93,8 @@
 		3B447A5E23B5FC6E00A32F4C /* KMContrastKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMContrastKernel.metal; sourceTree = "<group>"; };
 		3B447A6123B5FCE100A32F4C /* KMWhiteBalanceFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMWhiteBalanceFilter.swift; sourceTree = "<group>"; };
 		3B447A6323B60CAC00A32F4C /* KMWhiteBalanceKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMWhiteBalanceKernel.metal; sourceTree = "<group>"; };
+		3B447A6623B61C0200A32F4C /* KMHighLightShadowFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMHighLightShadowFilter.swift; sourceTree = "<group>"; };
+		3B447A6823B61C6900A32F4C /* KMHighLightShadowKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMHighLightShadowKernel.metal; sourceTree = "<group>"; };
 		3BCBBBD023ADF24B0056D749 /* KMLookUpFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMLookUpFilter.swift; sourceTree = "<group>"; };
 		3BCBBBD223ADF2C70056D749 /* KMLookUpKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMLookUpKernel.metal; sourceTree = "<group>"; };
 		3BE01CAA23A8BB820057B987 /* KMMetalCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalCommon.swift; sourceTree = "<group>"; };
@@ -219,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				3B447A5A23B5FB3000A32F4C /* KMMetalConstant.h */,
+				3B447A6523B61B8700A32F4C /* HighlightShadow */,
 				3B447A6023B5FCC600A32F4C /* WhiteBalance */,
 				3B447A5B23B5FBF900A32F4C /* Contrast */,
 				3B447A5523B5F9E000A32F4C /* Saturation */,
@@ -283,6 +288,15 @@
 				3B447A6323B60CAC00A32F4C /* KMWhiteBalanceKernel.metal */,
 			);
 			path = WhiteBalance;
+			sourceTree = "<group>";
+		};
+		3B447A6523B61B8700A32F4C /* HighlightShadow */ = {
+			isa = PBXGroup;
+			children = (
+				3B447A6623B61C0200A32F4C /* KMHighLightShadowFilter.swift */,
+				3B447A6823B61C6900A32F4C /* KMHighLightShadowKernel.metal */,
+			);
+			path = HighlightShadow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +399,8 @@
 				3B0C7FE423B509DA00222528 /* KMFaceDetector.swift in Sources */,
 				3B0871D823A882270082DC2D /* KMMetalView.swift in Sources */,
 				3B1242BA23AB99AE008574AF /* KMMetalCamera.swift in Sources */,
+				3B447A6723B61C0200A32F4C /* KMHighLightShadowFilter.swift in Sources */,
+				3B447A6923B61C6900A32F4C /* KMHighLightShadowKernel.metal in Sources */,
 				3BFA509823AA250300238AA3 /* KMTexture.swift in Sources */,
 				3B0871C723A879BA0082DC2D /* ViewController.swift in Sources */,
 				3B0871C323A879BA0082DC2D /* AppDelegate.swift in Sources */,
