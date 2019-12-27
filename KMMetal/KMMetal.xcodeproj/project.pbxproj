@@ -37,6 +37,8 @@
 		3B447A4F23B4E89F00A32F4C /* KMExposureKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A4E23B4E89F00A32F4C /* KMExposureKernel.metal */; };
 		3B447A5723B5FA0000A32F4C /* KMSaturationFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A5623B5FA0000A32F4C /* KMSaturationFilter.swift */; };
 		3B447A5923B5FA4A00A32F4C /* KMSaturationKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A5823B5FA4A00A32F4C /* KMSaturationKernel.metal */; };
+		3B447A5D23B5FC5400A32F4C /* KMContrastFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A5C23B5FC5400A32F4C /* KMContrastFilter.swift */; };
+		3B447A5F23B5FC6E00A32F4C /* KMContrastKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A5E23B5FC6E00A32F4C /* KMContrastKernel.metal */; };
 		3BCBBBD123ADF24B0056D749 /* KMLookUpFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCBBBD023ADF24B0056D749 /* KMLookUpFilter.swift */; };
 		3BCBBBD323ADF2C70056D749 /* KMLookUpKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3BCBBBD223ADF2C70056D749 /* KMLookUpKernel.metal */; };
 		3BE01CAB23A8BB820057B987 /* KMMetalCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE01CAA23A8BB820057B987 /* KMMetalCommon.swift */; };
@@ -83,6 +85,8 @@
 		3B447A5623B5FA0000A32F4C /* KMSaturationFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMSaturationFilter.swift; sourceTree = "<group>"; };
 		3B447A5823B5FA4A00A32F4C /* KMSaturationKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMSaturationKernel.metal; sourceTree = "<group>"; };
 		3B447A5A23B5FB3000A32F4C /* KMMetalConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMMetalConstant.h; sourceTree = "<group>"; };
+		3B447A5C23B5FC5400A32F4C /* KMContrastFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMContrastFilter.swift; sourceTree = "<group>"; };
+		3B447A5E23B5FC6E00A32F4C /* KMContrastKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMContrastKernel.metal; sourceTree = "<group>"; };
 		3BCBBBD023ADF24B0056D749 /* KMLookUpFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMLookUpFilter.swift; sourceTree = "<group>"; };
 		3BCBBBD223ADF2C70056D749 /* KMLookUpKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMLookUpKernel.metal; sourceTree = "<group>"; };
 		3BE01CAA23A8BB820057B987 /* KMMetalCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalCommon.swift; sourceTree = "<group>"; };
@@ -210,12 +214,13 @@
 		3B1242B423AB96FA008574AF /* Kernel */ = {
 			isa = PBXGroup;
 			children = (
+				3B447A5A23B5FB3000A32F4C /* KMMetalConstant.h */,
+				3B447A5B23B5FBF900A32F4C /* Contrast */,
 				3B447A5523B5F9E000A32F4C /* Saturation */,
 				3B0C7FDC23B5098F00222528 /* ThinFace */,
 				3B447A4B23B4E81E00A32F4C /* Exposure */,
 				3B447A4A23B4E72900A32F4C /* LookUp */,
 				3B447A4923B4E53900A32F4C /* Brightness */,
-				3B447A5A23B5FB3000A32F4C /* KMMetalConstant.h */,
 			);
 			path = Kernel;
 			sourceTree = "<group>";
@@ -255,6 +260,15 @@
 				3B447A5823B5FA4A00A32F4C /* KMSaturationKernel.metal */,
 			);
 			path = Saturation;
+			sourceTree = "<group>";
+		};
+		3B447A5B23B5FBF900A32F4C /* Contrast */ = {
+			isa = PBXGroup;
+			children = (
+				3B447A5C23B5FC5400A32F4C /* KMContrastFilter.swift */,
+				3B447A5E23B5FC6E00A32F4C /* KMContrastKernel.metal */,
+			);
+			path = Contrast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,6 +353,7 @@
 			files = (
 				3B0C7FE523B509DA00222528 /* CGAffineTransform+Matrix.swift in Sources */,
 				3BE01CB623AA1E5B0057B987 /* KMMetalShared.swift in Sources */,
+				3B447A5D23B5FC5400A32F4C /* KMContrastFilter.swift in Sources */,
 				3BFA509A23AA27F200238AA3 /* PassthroughShaders.metal in Sources */,
 				3BCBBBD123ADF24B0056D749 /* KMLookUpFilter.swift in Sources */,
 				3B1242B823AB9793008574AF /* KMBrightnessFilter.swift in Sources */,
@@ -362,6 +377,7 @@
 				3B0C7FDF23B5099000222528 /* KMThinFaceFilter.swift in Sources */,
 				3BFA50A223AB53FB00238AA3 /* MetalTexture+CGImage.swift in Sources */,
 				3BE01CAB23A8BB820057B987 /* KMMetalCommon.swift in Sources */,
+				3B447A5F23B5FC6E00A32F4C /* KMContrastKernel.metal in Sources */,
 				3B0871EA23A889B20082DC2D /* KMMetalFilter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
