@@ -9,6 +9,11 @@ import UIKit
 import MetalKit
 
 class KMMetalView: MTKView, KMMetalInput {
+    
+    var object: AnyObject {
+        return self
+    }
+    
     func onBeAdded() {
         
     }

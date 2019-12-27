@@ -17,10 +17,12 @@ protocol KMMetalInput {
     func next(texture: KMMetalTexture)
     func onBeAdded()
     func onProcessEnd()
+    var object: AnyObject { get }
 }
 
 protocol KMMetalOutput {
-    @discardableResult func add(input: KMMetalInput) -> Self
+    func add(input: KMMetalInput)
+    func delete(input: KMMetalInput)
 }
 
 protocol KMMetalOneParameterFilter {

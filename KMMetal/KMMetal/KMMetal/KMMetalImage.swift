@@ -7,7 +7,17 @@
 
 import UIKit
 
-class KMMetalImage: KMMetalOutput {
+class KMMetalImage: NSObject, KMMetalOutput {
+    
+    func delete(input: KMMetalInput) {
+        self.lock.wait()
+        self.childs.removeAll { (ip) -> Bool in
+            return ip.object === input.object
+        }
+        self.lock.signal()
+    }
+    
+    
     func clearTexture() {
         self.lock.wait()
         self.internal_texture = nil
@@ -30,12 +40,14 @@ class KMMetalImage: KMMetalOutput {
         self.texture = cgImage.toTexture(device: KMMetalShared.shared.device, specificSize: nil)
     }
     
-    @discardableResult
-    func add(input: KMMetalInput) -> Self {
+    func add(input: KMMetalInput) {
         self.lock.wait()
         self.childs.append(input)
         self.lock.signal()
         input.onBeAdded()
+    }
+    
+    var object: NSObject {
         return self
     }
     

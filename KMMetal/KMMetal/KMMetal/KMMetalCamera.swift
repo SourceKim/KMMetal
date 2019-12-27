@@ -20,12 +20,19 @@ class KMMetalCamera: NSObject, KMMetalOutput {
     
     weak var del: KMMetalCameraDelegate?
     
-    func add(input: KMMetalInput) -> Self {
+    func add(input: KMMetalInput) {
         self.lock.wait()
         self.childs.append(input)
         self.lock.signal()
         input.onBeAdded()
-        return self
+    }
+    
+    func delete(input: KMMetalInput) {
+        self.lock.wait()
+        self.childs.removeAll { (ip) -> Bool in
+            return ip.object === input.object
+        }
+        self.lock.signal()
     }
     
     func clearTexture() {

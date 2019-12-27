@@ -7,7 +7,13 @@
 
 import UIKit
 
-class KMMetalFilter: KMMetalInput, KMMetalOutput {
+class KMMetalFilter: NSObject, KMMetalInput, KMMetalOutput {
+    
+
+    var object: AnyObject {
+        return self
+    }
+    
     func onBeAdded() {
         self.lock.wait()
         self.parentCount += 1
@@ -139,12 +145,19 @@ class KMMetalFilter: KMMetalInput, KMMetalOutput {
         
     }
     
-    func add(input: KMMetalInput) -> Self {
+    func add(input: KMMetalInput) {
         self.lock.wait()
         self.childs.append(input)
         self.lock.signal()
         input.onBeAdded()
-        return self
+    }
+    
+    func delete(input: KMMetalInput) {
+        self.lock.wait()
+        self.childs.removeAll { (ip) -> Bool in
+            return ip.object === input.object
+        }
+        self.lock.signal()
     }
 
 }
