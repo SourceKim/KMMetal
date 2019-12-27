@@ -29,6 +29,14 @@ protocol KMMetalOneParameterFilter {
     var defaultValue: Float { get set }
 }
 
+struct valueStruct: KMMetalOneParameterFilter {
+    var maxValue: Float
+    
+    var minValue: Float
+    
+    var defaultValue: Float
+}
+
 enum KMTextureRotation {
     case Rotate0Degrees
     case Rotate90Degrees
