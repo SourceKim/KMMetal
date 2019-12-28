@@ -7,7 +7,7 @@
 
 import UIKit
 
-class KMMetalFilter: NSObject, KMMetalInput, KMMetalOutput {
+class KMMetalFilter: NSObject, KMMetalFilterProtocol {
     
 
     var object: AnyObject {

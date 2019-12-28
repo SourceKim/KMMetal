@@ -9,6 +9,8 @@ import UIKit
 
 class KMMetalImage: NSObject, KMMetalOutput {
     
+    var outputKMTexture: KMMetalTexture?
+    
     func delete(input: KMMetalInput) {
         self.lock.wait()
         self.childs.removeAll { (ip) -> Bool in
@@ -64,6 +66,9 @@ class KMMetalImage: NSObject, KMMetalOutput {
         self.lock.signal()
         
         let kmTexture = KMTexture(texture: t, cameraPosition: nil)
+        
+        self.outputKMTexture = kmTexture
+        
         for chr in chrs {
             chr.next(texture: kmTexture)
         }

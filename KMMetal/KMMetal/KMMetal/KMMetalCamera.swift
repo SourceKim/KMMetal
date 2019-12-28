@@ -14,6 +14,8 @@ protocol KMMetalCameraDelegate: AnyObject {
 
 class KMMetalCamera: NSObject, KMMetalOutput {
     
+    var outputKMTexture: KMMetalTexture?
+    
     var texture: MTLTexture?
     
     var childs = [KMMetalInput]()
@@ -171,8 +173,10 @@ extension KMMetalCamera: AVCaptureVideoDataOutputSampleBufferDelegate {
 //                                           sampleTime: sampleTime,
 //                                           cameraPosition: cameraPosition,
 //                                           cvMetalTexture: texture.cvMetalTexture)
+        let outKMTexture = KMTexture(texture: texture, cameraPosition: cameraPosition)
+        self.outputKMTexture = outKMTexture
         for child in childs {
-            child.next(texture: KMTexture(texture: texture, cameraPosition: cameraPosition))
+            child.next(texture: outKMTexture)
         }
     }
     

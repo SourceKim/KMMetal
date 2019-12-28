@@ -23,6 +23,8 @@ protocol KMMetalInput {
 protocol KMMetalOutput {
     func add(input: KMMetalInput)
     func delete(input: KMMetalInput)
+    
+    var outputKMTexture: KMMetalTexture? { get set }
 }
 
 protocol KMMetalOneParameterFilter {
@@ -51,3 +53,5 @@ enum KMTextureContentMode {
     case AspectRatioFit
     case Fill
 }
+
+typealias KMMetalFilterProtocol = KMMetalInput & KMMetalOutput

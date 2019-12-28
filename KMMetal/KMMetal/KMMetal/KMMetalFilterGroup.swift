@@ -7,9 +7,11 @@
 
 import UIKit
 
-class KMMetalFilterGroup: NSObject, KMMetalInput, KMMetalOutput {
+class KMMetalFilterGroup: NSObject, KMMetalFilterProtocol {
     
-    private var filters: [KMMetalFilter]
+    var outputKMTexture: KMMetalTexture?
+    
+    private var filters: [KMMetalFilterProtocol]
     
     private let lock = DispatchSemaphore(value: 1)
     
@@ -41,6 +43,8 @@ class KMMetalFilterGroup: NSObject, KMMetalInput, KMMetalOutput {
             filter.next(texture: t)
             lastOutKMTexture = filter.outputKMTexture
         }
+        
+        self.outputKMTexture = lastOutKMTexture
         
         guard let lastTexture = lastOutKMTexture else { return }
         for c in _childs {
