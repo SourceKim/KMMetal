@@ -45,6 +45,7 @@
 		3B447A6923B61C6900A32F4C /* KMHighLightShadowKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A6823B61C6900A32F4C /* KMHighLightShadowKernel.metal */; };
 		3B447A6C23B61F5200A32F4C /* KMSharpenFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A6B23B61F5200A32F4C /* KMSharpenFilter.swift */; };
 		3B447A6E23B61FBF00A32F4C /* KMSharpenKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A6D23B61FBF00A32F4C /* KMSharpenKernel.metal */; };
+		3B447A7023B7579B00A32F4C /* KMMetalFilterGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A6F23B7579B00A32F4C /* KMMetalFilterGroup.swift */; };
 		3BCBBBD123ADF24B0056D749 /* KMLookUpFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCBBBD023ADF24B0056D749 /* KMLookUpFilter.swift */; };
 		3BCBBBD323ADF2C70056D749 /* KMLookUpKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3BCBBBD223ADF2C70056D749 /* KMLookUpKernel.metal */; };
 		3BE01CAB23A8BB820057B987 /* KMMetalCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE01CAA23A8BB820057B987 /* KMMetalCommon.swift */; };
@@ -99,6 +100,7 @@
 		3B447A6823B61C6900A32F4C /* KMHighLightShadowKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMHighLightShadowKernel.metal; sourceTree = "<group>"; };
 		3B447A6B23B61F5200A32F4C /* KMSharpenFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMSharpenFilter.swift; sourceTree = "<group>"; };
 		3B447A6D23B61FBF00A32F4C /* KMSharpenKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMSharpenKernel.metal; sourceTree = "<group>"; };
+		3B447A6F23B7579B00A32F4C /* KMMetalFilterGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalFilterGroup.swift; sourceTree = "<group>"; };
 		3BCBBBD023ADF24B0056D749 /* KMLookUpFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMLookUpFilter.swift; sourceTree = "<group>"; };
 		3BCBBBD223ADF2C70056D749 /* KMLookUpKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMLookUpKernel.metal; sourceTree = "<group>"; };
 		3BE01CAA23A8BB820057B987 /* KMMetalCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalCommon.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				3BFA509923AA27F200238AA3 /* PassthroughShaders.metal */,
 				3BFA509F23AB4C1500238AA3 /* KMMetalImage.swift */,
 				3B1242B923AB99AE008574AF /* KMMetalCamera.swift */,
+				3B447A6F23B7579B00A32F4C /* KMMetalFilterGroup.swift */,
 			);
 			path = KMMetal;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				3B1242B823AB9793008574AF /* KMBrightnessFilter.swift in Sources */,
 				3BCBBBD323ADF2C70056D749 /* KMLookUpKernel.metal in Sources */,
 				3B447A5923B5FA4A00A32F4C /* KMSaturationKernel.metal in Sources */,
+				3B447A7023B7579B00A32F4C /* KMMetalFilterGroup.swift in Sources */,
 				3B0871E823A884A70082DC2D /* MetalTexture+UIImage.swift in Sources */,
 				3B447A6223B5FCE100A32F4C /* KMWhiteBalanceFilter.swift in Sources */,
 				3B447A5723B5FA0000A32F4C /* KMSaturationFilter.swift in Sources */,

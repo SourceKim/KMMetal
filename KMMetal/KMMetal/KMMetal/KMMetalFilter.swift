@@ -32,6 +32,8 @@ class KMMetalFilter: NSObject, KMMetalInput, KMMetalOutput {
     private var parentCount = 0
     
     private let lock = DispatchSemaphore(value: 1)
+    
+    var outputKMTexture: KMMetalTexture?
 
     init?(kernelName: String) {
         guard let library = KMMetalShared.shared.device.makeDefaultLibrary(),
@@ -134,6 +136,8 @@ class KMMetalFilter: NSObject, KMMetalInput, KMMetalOutput {
         }
         let outkmt = KMTexture(texture: ot, cameraPosition: texture.cameraPosition)
         self.lock.signal()
+        
+        self.outputKMTexture = outkmt
         
         for child in self.childs {
             child.next(texture: outkmt)
