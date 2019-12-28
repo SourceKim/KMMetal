@@ -48,6 +48,9 @@
 		3B447A7023B7579B00A32F4C /* KMMetalFilterGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A6F23B7579B00A32F4C /* KMMetalFilterGroup.swift */; };
 		3B447A7323B778A000A32F4C /* KMSobelFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A7223B778A000A32F4C /* KMSobelFilter.swift */; };
 		3B447A7523B778E700A32F4C /* KMSobelKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A7423B778E700A32F4C /* KMSobelKernel.metal */; };
+		3B447A7823B77D5C00A32F4C /* KMSingleBilateralBlurFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A7723B77D5C00A32F4C /* KMSingleBilateralBlurFilter.swift */; };
+		3B447A7A23B77DBC00A32F4C /* KMSingleBilateralBlurKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A7923B77DBC00A32F4C /* KMSingleBilateralBlurKernel.metal */; };
+		3B447A7C23B77E2300A32F4C /* KMBilateralBlurFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B447A7B23B77E2300A32F4C /* KMBilateralBlurFilter.swift */; };
 		3BCBBBD123ADF24B0056D749 /* KMLookUpFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCBBBD023ADF24B0056D749 /* KMLookUpFilter.swift */; };
 		3BCBBBD323ADF2C70056D749 /* KMLookUpKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3BCBBBD223ADF2C70056D749 /* KMLookUpKernel.metal */; };
 		3BE01CAB23A8BB820057B987 /* KMMetalCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE01CAA23A8BB820057B987 /* KMMetalCommon.swift */; };
@@ -105,6 +108,9 @@
 		3B447A6F23B7579B00A32F4C /* KMMetalFilterGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalFilterGroup.swift; sourceTree = "<group>"; };
 		3B447A7223B778A000A32F4C /* KMSobelFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMSobelFilter.swift; sourceTree = "<group>"; };
 		3B447A7423B778E700A32F4C /* KMSobelKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMSobelKernel.metal; sourceTree = "<group>"; };
+		3B447A7723B77D5C00A32F4C /* KMSingleBilateralBlurFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMSingleBilateralBlurFilter.swift; sourceTree = "<group>"; };
+		3B447A7923B77DBC00A32F4C /* KMSingleBilateralBlurKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMSingleBilateralBlurKernel.metal; sourceTree = "<group>"; };
+		3B447A7B23B77E2300A32F4C /* KMBilateralBlurFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMBilateralBlurFilter.swift; sourceTree = "<group>"; };
 		3BCBBBD023ADF24B0056D749 /* KMLookUpFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMLookUpFilter.swift; sourceTree = "<group>"; };
 		3BCBBBD223ADF2C70056D749 /* KMLookUpKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMLookUpKernel.metal; sourceTree = "<group>"; };
 		3BE01CAA23A8BB820057B987 /* KMMetalCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalCommon.swift; sourceTree = "<group>"; };
@@ -233,6 +239,8 @@
 		3B1242B423AB96FA008574AF /* Kernel */ = {
 			isa = PBXGroup;
 			children = (
+				3B447A7D23B7802A00A32F4C /* New Group */,
+				3B447A7623B77D2100A32F4C /* BilateralBlur */,
 				3B447A7123B7788E00A32F4C /* Sobel */,
 				3B447A6A23B61F3200A32F4C /* Sharpen */,
 				3B447A5A23B5FB3000A32F4C /* KMMetalConstant.h */,
@@ -330,6 +338,23 @@
 			path = Sobel;
 			sourceTree = "<group>";
 		};
+		3B447A7623B77D2100A32F4C /* BilateralBlur */ = {
+			isa = PBXGroup;
+			children = (
+				3B447A7B23B77E2300A32F4C /* KMBilateralBlurFilter.swift */,
+				3B447A7723B77D5C00A32F4C /* KMSingleBilateralBlurFilter.swift */,
+				3B447A7923B77DBC00A32F4C /* KMSingleBilateralBlurKernel.metal */,
+			);
+			path = BilateralBlur;
+			sourceTree = "<group>";
+		};
+		3B447A7D23B7802A00A32F4C /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -417,6 +442,8 @@
 				3BFA509A23AA27F200238AA3 /* PassthroughShaders.metal in Sources */,
 				3BCBBBD123ADF24B0056D749 /* KMLookUpFilter.swift in Sources */,
 				3B447A6423B60CAC00A32F4C /* KMWhiteBalanceKernel.metal in Sources */,
+				3B447A7823B77D5C00A32F4C /* KMSingleBilateralBlurFilter.swift in Sources */,
+				3B447A7A23B77DBC00A32F4C /* KMSingleBilateralBlurKernel.metal in Sources */,
 				3B1242B823AB9793008574AF /* KMBrightnessFilter.swift in Sources */,
 				3B447A7523B778E700A32F4C /* KMSobelKernel.metal in Sources */,
 				3BCBBBD323ADF2C70056D749 /* KMLookUpKernel.metal in Sources */,
@@ -425,6 +452,7 @@
 				3B0871E823A884A70082DC2D /* MetalTexture+UIImage.swift in Sources */,
 				3B447A6223B5FCE100A32F4C /* KMWhiteBalanceFilter.swift in Sources */,
 				3B447A5723B5FA0000A32F4C /* KMSaturationFilter.swift in Sources */,
+				3B447A7C23B77E2300A32F4C /* KMBilateralBlurFilter.swift in Sources */,
 				3B447A6C23B61F5200A32F4C /* KMSharpenFilter.swift in Sources */,
 				3B447A4D23B4E84400A32F4C /* KMExposureFilter.swift in Sources */,
 				3B447A4F23B4E89F00A32F4C /* KMExposureKernel.metal in Sources */,
