@@ -18,14 +18,16 @@ class ViewController: UIViewController {
     let thinFaceFilter0 = KMThinFaceFilter()
     let thinFaceFilter1 = KMThinFaceFilter()
     let skinSmoothFilter = KMSkinSmoothFilter()
+    let cropFilter = KMCropFilter()
     var previewLayer: AVCaptureVideoPreviewLayer!
     let boxV = UIView()
     var views = [UIView]()
     let intensitySlider = UISlider(frame: CGRect(x: 10, y: 50, width: 300, height: 40))
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.sourceImage.add(input: self.skinSmoothFilter)
-        self.skinSmoothFilter.add(input: self.metalView)
+        self.sourceImage.add(input: self.cropFilter)
+        self.cropFilter.normalizedRect = KMNormalizedRect(x: 0, y: 0, width: 1, height: 0.5)
+        self.cropFilter.add(input: self.metalView)
 //        self.camera?.del = self
 //        self.camera?.add(input: self.thinFaceFilter0)
 //        self.thinFaceFilter0.add(input: self.thinFaceFilter1)

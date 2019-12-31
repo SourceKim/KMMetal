@@ -77,6 +77,12 @@ class KMMetalFilter: NSObject, KMMetalFilterProtocol {
         
     }
     
+    /// Get output texture size by input texture size
+    /// - Parameter inputSize: input texture size
+    func getOutputTextureSize(by inputSize: KMTextureSize) -> KMTextureSize {
+        return inputSize
+    }
+    
     func next(texture: KMMetalTexture) {
         
 //        let manager = MTLCaptureManager.shared()
@@ -107,15 +113,17 @@ class KMMetalFilter: NSObject, KMMetalFilterProtocol {
         
         guard let firstTexture = ps.first?.texture else { return }
         
+        let outputTextureSize = self.getOutputTextureSize(by: firstTexture.size)
+        
         // 重新创建 OutputTexture
         self.lock.wait()
         if self.outputTexture == nil ||
-            self.outputTexture?.width != firstTexture.width ||
-            self.outputTexture?.height != firstTexture.height {
+            self.outputTexture?.width != outputTextureSize.width ||
+            self.outputTexture?.height != outputTextureSize.height {
             let desc = MTLTextureDescriptor()
             desc.pixelFormat = .rgba8Unorm
-            desc.width = firstTexture.width
-            desc.height = firstTexture.height
+            desc.width = outputTextureSize.width
+            desc.height = outputTextureSize.height
             desc.usage = [.shaderRead, .shaderWrite]
             if let o = KMMetalShared.shared.device.makeTexture(descriptor: desc) {
                 self.outputTexture = o
@@ -125,8 +133,8 @@ class KMMetalFilter: NSObject, KMMetalFilterProtocol {
             }
         }
             
-        self.threadgroupsPerGrid = MTLSize(width: (firstTexture.width + w - 1) / w,
-                                           height: (firstTexture.height + h - 1) / h,
+        self.threadgroupsPerGrid = MTLSize(width: (outputTextureSize.width + w - 1) / w,
+                                           height: (outputTextureSize.height + h - 1) / h,
                                            depth: 1)
         
         guard let encoder = commandBuffer.makeComputeCommandEncoder() else { return }

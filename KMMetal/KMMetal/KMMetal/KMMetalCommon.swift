@@ -9,6 +9,17 @@ import UIKit
 import simd
 import AVFoundation
 
+struct KMTextureSize {
+    var width: Int
+    var height: Int
+}
+
+extension MTLTexture {
+    var size: KMTextureSize {
+        return KMTextureSize(width: self.width, height: self.height)
+    }
+}
+
 protocol KMMetalTexture {
     var texture: MTLTexture { get set }
     var cameraPosition: AVCaptureDevice.Position? { get }
