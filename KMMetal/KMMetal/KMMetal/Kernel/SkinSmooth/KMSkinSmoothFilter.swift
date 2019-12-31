@@ -12,6 +12,15 @@ class KMSkinSmoothFilter: KMMetalFilterGroup {
     private let blurFilter: KMBilateralBlurFilter
     private let sobelFilter: KMSobelFilter
     private let skinSmoothFilter: KMInternalSkinSmoothFilter
+    
+    var smoothDegree: Float {
+        get {
+            self.skinSmoothFilter.smoothDegree
+        }
+        set {
+            self.skinSmoothFilter.smoothDegree = newValue
+        }
+    }
 
     init() {
         blurFilter = KMBilateralBlurFilter()
