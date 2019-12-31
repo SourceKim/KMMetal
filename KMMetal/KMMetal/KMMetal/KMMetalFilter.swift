@@ -9,10 +9,17 @@ import UIKit
 
 class KMMetalFilter: NSObject, KMMetalFilterProtocol {
     
+    func onBeDeleted() {
+        self.lock.wait()
+        self.parentCount -= 1
+        self.lock.signal()
+    }
 
     var object: AnyObject {
         return self
     }
+    
+    private var _processCallback: (() -> ())?
     
     func onBeAdded() {
         self.lock.wait()
@@ -34,6 +41,22 @@ class KMMetalFilter: NSObject, KMMetalFilterProtocol {
     private let lock = DispatchSemaphore(value: 1)
     
     var outputKMTexture: KMMetalTexture?
+    
+    var isSync: Bool {
+        get {
+            self.lock.wait()
+            let v = self._isSync
+            self.lock.signal()
+            return v
+        }
+        set {
+            self.lock.wait()
+            self._isSync = newValue
+            self.lock.signal()
+        }
+    }
+    
+    private var _isSync: Bool = true
 
     init?(kernelName: String) {
         guard let library = KMMetalShared.shared.device.makeDefaultLibrary(),
@@ -56,8 +79,8 @@ class KMMetalFilter: NSObject, KMMetalFilterProtocol {
     
     func next(texture: KMMetalTexture) {
         
-        let manager = MTLCaptureManager.shared()
-        manager.defaultCaptureScope?.begin()
+//        let manager = MTLCaptureManager.shared()
+//        manager.defaultCaptureScope?.begin()
         
 //        MTLCaptureManager.shared().startCapture(commandQueue: KMMetalShared.shared.queue)
         
@@ -65,14 +88,13 @@ class KMMetalFilter: NSObject, KMMetalFilterProtocol {
         self.parentTextures.append(texture)
         let ps = self.parentTextures
         let parentCount = self.parentCount
-        self.lock.signal()
         
         // Check is textures all ready
         if ps.count != parentCount {
-            self.lock.wait()
             self.lock.signal()
-            return
+            return // If not, will wait here for feeding.
         }
+        self.lock.signal()
         
         // todo, 考虑 resize filter
         
@@ -123,10 +145,18 @@ class KMMetalFilter: NSObject, KMMetalFilterProtocol {
         encoder.endEncoding()
         
         commandBuffer.commit()
-        commandBuffer.waitUntilCompleted()
+        if self._isSync {
+            commandBuffer.waitUntilCompleted()
+        }
+        
+        if let callback = self._processCallback {
+            commandBuffer.addCompletedHandler { (_) in
+                callback()
+            }
+        }
         
 //        MTLCaptureManager.shared().stopCapture()
-        manager.defaultCaptureScope?.end()
+//        manager.defaultCaptureScope?.end()
         
         // 清除 parents 的 texture
         self.parentTextures.removeAll()
@@ -145,8 +175,10 @@ class KMMetalFilter: NSObject, KMMetalFilterProtocol {
         
     }
     
-    func onProcessEnd() {
-        
+    func setProcessCallback(_ processCallback: (() -> ())?) {
+        self.lock.wait()
+        _processCallback = processCallback
+        self.lock.signal()
     }
     
     func add(input: KMMetalInput) {
@@ -162,6 +194,7 @@ class KMMetalFilter: NSObject, KMMetalFilterProtocol {
             return ip.object === input.object
         }
         self.lock.signal()
+        input.onBeDeleted()
     }
 
 }

@@ -16,7 +16,8 @@ protocol KMMetalTexture {
 protocol KMMetalInput {
     func next(texture: KMMetalTexture)
     func onBeAdded()
-    func onProcessEnd()
+    func onBeDeleted()
+    func setProcessCallback(_ processCallback: (()->())?)
     var object: AnyObject { get }
 }
 
@@ -25,6 +26,13 @@ protocol KMMetalOutput {
     func delete(input: KMMetalInput)
     
     var outputKMTexture: KMMetalTexture? { get set }
+}
+
+protocol KMMetalFilterProtocol: KMMetalOutput, KMMetalInput {
+    
+    /// Run synchronizly
+    var isSync: Bool { get set }
+    
 }
 
 protocol KMMetalOneParameterFilter {
@@ -53,5 +61,3 @@ enum KMTextureContentMode {
     case AspectRatioFit
     case Fill
 }
-
-typealias KMMetalFilterProtocol = KMMetalInput & KMMetalOutput

@@ -17,19 +17,21 @@ class ViewController: UIViewController {
     private let faceDetector = KMFaceDetector()
     let thinFaceFilter0 = KMThinFaceFilter()
     let thinFaceFilter1 = KMThinFaceFilter()
+    let skinSmoothFilter = KMSkinSmoothFilter()
     var previewLayer: AVCaptureVideoPreviewLayer!
     let boxV = UIView()
     var views = [UIView]()
     let intensitySlider = UISlider(frame: CGRect(x: 10, y: 50, width: 300, height: 40))
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.camera?.del = self
-        self.camera?.add(input: self.thinFaceFilter0)
-        self.thinFaceFilter0.add(input: self.thinFaceFilter1)
-        self.thinFaceFilter1.add(input: self.metalView)
+        self.sourceImage.add(input: self.skinSmoothFilter)
+        self.skinSmoothFilter.add(input: self.metalView)
+//        self.camera?.del = self
+//        self.camera?.add(input: self.thinFaceFilter0)
+//        self.thinFaceFilter0.add(input: self.thinFaceFilter1)
+//        self.thinFaceFilter1.add(input: self.metalView)
 //        self.camera?.add(input: self.metalView)
         self.metalView.frame = self.view.bounds
-        
 //        previewLayer = AVCaptureVideoPreviewLayer(session: self.camera!.session)
 //        previewLayer.videoGravity = .resizeAspectFill
 //        previewLayer.frame = self.view.bounds
@@ -40,10 +42,14 @@ class ViewController: UIViewController {
 //        self.sourceImage.add(input: self.metalView)
         self.view.addSubview(self.metalView)
         
-        self.view.addSubview(self.boxV)
-        self.boxV.backgroundColor = .red
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.sourceImage.process()
+        }
         
-        self.camera?.run()
+//        self.view.addSubview(self.boxV)
+//        self.boxV.backgroundColor = .red
+//
+//        self.camera?.run()
         
 //        for i in 0..<75 {
 //            let v = UIView()
@@ -53,11 +59,11 @@ class ViewController: UIViewController {
 //            self.metalView.addSubview(v)
 //        }
         
-        self.intensitySlider.addTarget(self, action: #selector(ViewController.onSliderChanged(sender:)), for: .valueChanged)
-        self.intensitySlider.minimumValue = 0
-        self.intensitySlider.maximumValue = 5
-        self.intensitySlider.value = 0
-        self.view.addSubview(self.intensitySlider)
+//        self.intensitySlider.addTarget(self, action: #selector(ViewController.onSliderChanged(sender:)), for: .valueChanged)
+//        self.intensitySlider.minimumValue = 0
+//        self.intensitySlider.maximumValue = 5
+//        self.intensitySlider.value = 0
+//        self.view.addSubview(self.intensitySlider)
         
 //        self.sourceImage.add(input: self.brightnessKernel)
 //        self.camera?.add(input: self.brightnessKernel)

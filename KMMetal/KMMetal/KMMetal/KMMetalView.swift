@@ -9,7 +9,7 @@ import UIKit
 import MetalKit
 
 class KMMetalView: MTKView, KMMetalInput {
-    
+
     var object: AnyObject {
         return self
     }
@@ -17,6 +17,13 @@ class KMMetalView: MTKView, KMMetalInput {
     func onBeAdded() {
         
     }
+    
+    func onBeDeleted() {
+        
+    }
+    
+    private var _processCallback: (() -> ())?
+    
     private let lock = DispatchSemaphore(value: 1)
     
     var rotation = KMTextureRotation.Rotate0Degrees
@@ -82,11 +89,13 @@ class KMMetalView: MTKView, KMMetalInput {
         self.lock.signal()
     }
     
-    func addFather(output: KMMetalOutput) {
+    func setProcessCallback(_ processCallback: (() -> ())?) {
+        self.lock.wait()
+        _processCallback = processCallback
+        self.lock.signal()
     }
     
-    func onProcessEnd() {
-        print("on process end")
+    func addFather(output: KMMetalOutput) {
     }
     
     override func draw(_ rect: CGRect) {
@@ -100,7 +109,8 @@ class KMMetalView: MTKView, KMMetalInput {
         }
         
 //        MTLCaptureManager.shared().startCapture(commandQueue: KMMetalShared.shared.queue)
-        
+                let manager = MTLCaptureManager.shared()
+                manager.defaultCaptureScope?.begin()
         self.drawableSize = CGSize(width: texture.width, height: texture.height)
         
         self.updateVertexBufferIfNeed(texture: texture)
@@ -121,6 +131,13 @@ class KMMetalView: MTKView, KMMetalInput {
         
         commandBuffer.commit()
         
+        if let callback = self._processCallback {
+            commandBuffer.addCompletedHandler { (_) in
+                callback()
+            }
+        }
+        
+        manager.defaultCaptureScope?.end()
 //        MTLCaptureManager.shared().stopCapture()
     }
     

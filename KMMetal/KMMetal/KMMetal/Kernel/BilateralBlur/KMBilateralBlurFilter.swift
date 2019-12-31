@@ -19,7 +19,8 @@ class KMBilateralBlurFilter: KMMetalFilterGroup {
         self.filter0.stepOffsetY = 0
         self.filter1.stepOffsetX = 0
         
-        super.init(filters: [self.filter0, self.filter1])
+        self.filter0.add(input: self.filter1)
+        super.init(filters: [self.filter0], terminateFilter: self.filter1)
     }
     
     func updateDistanceNormalizationFactor(newValue: Float) {
