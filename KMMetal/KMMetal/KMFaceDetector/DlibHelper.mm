@@ -74,36 +74,12 @@
         NSMutableArray<NSValue *> *landmarksOfOneFace = [NSMutableArray array];
         for (int i = 0; i<shape.num_parts(); i++) {
             dlib::point dlibPoint = shape.part(i);
-            CGPoint cgPoint = CGPointMake(CGFloat(dlibPoint.x() - 8), CGFloat(dlibPoint.y()));
-            NSLog(@"km - %ld - %ld", dlibPoint.x(), dlibPoint.y());
-            NSLog(@"km - %lf - %lf", cgPoint.x, cgPoint.y);
+            CGPoint cgPoint = CGPointMake(CGFloat(dlibPoint.x()), CGFloat(dlibPoint.y()));
             NSValue *val = [NSValue valueWithCGPoint: cgPoint];
             [landmarksOfOneFace addObject: val];
-            draw_solid_circle(img, dlibPoint, 3, dlib::rgb_pixel(0, 255, 255));
         }
         [landmarks addObject: landmarksOfOneFace.copy];
     }
-    
-    // lets put everything back where it belongs
-    CVPixelBufferLockBaseAddress(imageBuffer, 0);
-
-    // copy dlib image data back into samplebuffer
-    img.reset();
-    position = 0;
-    while (img.move_next()) {
-        dlib::bgr_pixel& pixel = img.element();
-
-        // assuming bgra format here
-        long bufferLocation = position * 4; //(row * width + column) * 4;
-        baseBuffer[bufferLocation] = pixel.blue;
-        baseBuffer[bufferLocation + 1] = pixel.green;
-        baseBuffer[bufferLocation + 2] = pixel.red;
-        //        we do not need this
-        //        char a = baseBuffer[bufferLocation + 3];
-
-        position++;
-    }
-    CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
 
     //3. Return
     return landmarks.copy;

@@ -28,6 +28,7 @@
 		3B1242B823AB9793008574AF /* KMBrightnessFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242B723AB9793008574AF /* KMBrightnessFilter.swift */; };
 		3B1242BA23AB99AE008574AF /* KMMetalCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242B923AB99AE008574AF /* KMMetalCamera.swift */; };
 		3B1242BC23AC729B008574AF /* MetalTexture+CMSampleBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242BB23AC729B008574AF /* MetalTexture+CMSampleBuffer.swift */; };
+		3B1F56DD23BE3DEE0022DA6B /* shape_predictor_81_face_landmarks.dat in Resources */ = {isa = PBXBuildFile; fileRef = 3B1F56DC23BE3D820022DA6B /* shape_predictor_81_face_landmarks.dat */; };
 		3B2FBC1923BCB9AB001034BF /* DlibHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B2FBC1823BCB9AB001034BF /* DlibHelper.mm */; };
 		3B2FBC1C23BCBA17001034BF /* libdlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2FBC1A23BCBA17001034BF /* libdlib.a */; };
 		3B2FBC1D23BCBA17001034BF /* shape_predictor_68_face_landmarks.dat in Resources */ = {isa = PBXBuildFile; fileRef = 3B2FBC1B23BCBA17001034BF /* shape_predictor_68_face_landmarks.dat */; };
@@ -97,6 +98,7 @@
 		3B1242B723AB9793008574AF /* KMBrightnessFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMBrightnessFilter.swift; sourceTree = "<group>"; };
 		3B1242B923AB99AE008574AF /* KMMetalCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalCamera.swift; sourceTree = "<group>"; };
 		3B1242BB23AC729B008574AF /* MetalTexture+CMSampleBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MetalTexture+CMSampleBuffer.swift"; sourceTree = "<group>"; };
+		3B1F56DC23BE3D820022DA6B /* shape_predictor_81_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = shape_predictor_81_face_landmarks.dat; sourceTree = "<group>"; };
 		3B2FBC1623BCB9AA001034BF /* KMMetal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KMMetal-Bridging-Header.h"; sourceTree = "<group>"; };
 		3B2FBC1723BCB9AB001034BF /* DlibHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DlibHelper.h; sourceTree = "<group>"; };
 		3B2FBC1823BCB9AB001034BF /* DlibHelper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DlibHelper.mm; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				3B2FBC1A23BCBA17001034BF /* libdlib.a */,
+				3B1F56DC23BE3D820022DA6B /* shape_predictor_81_face_landmarks.dat */,
 				3B2FBC1B23BCBA17001034BF /* shape_predictor_68_face_landmarks.dat */,
 			);
 			path = dlib;
@@ -485,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B0871CF23A879BB0082DC2D /* LaunchScreen.storyboard in Resources */,
+				3B1F56DD23BE3DEE0022DA6B /* shape_predictor_81_face_landmarks.dat in Resources */,
 				3B0871E123A8834C0082DC2D /* img2.png in Resources */,
 				3B4479F123AE0EE200A32F4C /* lookup_soft_elegance_2.png in Resources */,
 				3B0871E323A8834C0082DC2D /* img1.png in Resources */,
@@ -704,7 +708,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/KMMetal/KMFaceDetector/dlib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kedc.KMMetal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kedc.KMMetal1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "KMMetal/KMFaceDetector/KMMetal-Bridging-Header.h";
@@ -733,7 +737,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/KMMetal/KMFaceDetector/dlib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kedc.KMMetal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kedc.KMMetal1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "KMMetal/KMFaceDetector/KMMetal-Bridging-Header.h";

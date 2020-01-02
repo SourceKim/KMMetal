@@ -15,7 +15,12 @@ protocol KMFaceDetectorDelegate: AnyObject {
 
 class KMFaceDetector {
     
-    var currentMetadata = [AVMetadataObject]()
+//    var currentMetadata = [AVMetadataObject]()
+    
+    var sampleBuffers = [CMSampleBuffer]()
+    
+    var connection: AVCaptureConnection?
+    var output: AVCaptureOutput?
     
     var dlibHelper = DlibHelper()
     
@@ -26,24 +31,42 @@ class KMFaceDetector {
     }
     
     func onMetadataObjectsOuput(_ objs: [AVMetadataObject]) {
-        self.currentMetadata = objs
+//        self.currentMetadata = objs
+        
+        guard
+            let connection = self.connection,
+            let output = self.output,
+            let sampleBuffer = self.sampleBuffers.last,
+            !objs.isEmpty else {
+                return
+        }
+        let rects = objs
+            .compactMap { $0 as? AVMetadataFaceObject }
+            .map { (faceObject) -> NSValue in
+                let convertedObject = output.transformedMetadataObject(for: faceObject, connection: connection)
+                return NSValue(cgRect: convertedObject!.bounds)
+        }
+        
+        let res = self.dlibHelper.detect(sampleBuffer, inside: rects)
+        self.del?.onDetetionFinished(res: res)
+        self.sampleBuffers.removeAll()
+        
     }
     
     func onSamplebufferOutput(_ sampleBuffer: CMSampleBuffer,
                               output: AVCaptureOutput,
                               connection: AVCaptureConnection) {
         
-        if !self.currentMetadata.isEmpty {
-            let rects = self.currentMetadata
-                .compactMap { $0 as? AVMetadataFaceObject }
-                .map { (faceObject) -> NSValue in
-                    let convertedObject = output.transformedMetadataObject(for: faceObject, connection: connection)
-                    return NSValue(cgRect: convertedObject!.bounds)
-            }
-            
-            let res = self.dlibHelper.detect(sampleBuffer, inside: rects)
-            self.del?.onDetetionFinished(res: res)
+        if connection != self.connection {
+            self.connection = connection
         }
+        
+        if output != self.output {
+            self.output = output
+        }
+        
+        self.sampleBuffers.append(sampleBuffer)
+        
     }
     
     func detectStaticImage(uiimage: UIImage) {
