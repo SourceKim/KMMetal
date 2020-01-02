@@ -148,6 +148,51 @@ class KMMetalCamera: NSObject, KMMetalOutput {
         
     }
     
+    func switchCamera() -> Bool {
+        self.lock.wait()
+        self.session.beginConfiguration()
+        
+        let newPosition: AVCaptureDevice.Position = self.cameraPosition == .back ? .front : .back
+        
+        guard
+            let newDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: newPosition),
+        let newInput = try? AVCaptureDeviceInput(device: newDevice)
+        else {
+            self.session.commitConfiguration()
+            self.lock.signal()
+            return false
+        }
+        
+        self.session.removeInput(self.input)
+        
+        guard self.session.canAddInput(newInput) else {
+            self.session.addInput(self.input)
+            self.session.commitConfiguration()
+            self.lock.signal()
+            return false
+        }
+        
+        self.session.addInput(newInput)
+        self.device = newDevice
+        self.input = newInput
+                
+        guard
+            let connection = self.output.connections.first,
+            connection.isVideoOrientationSupported else {
+                self.session.addInput(self.input)
+                self.session.commitConfiguration()
+                self.lock.signal()
+                return false
+        }
+        
+        connection.videoOrientation = .portrait
+        
+        self.session.commitConfiguration()
+        self.lock.signal()
+        
+        return true
+    }
+    
     // MARK: - Photo ouput
     private var photoOutput: AVCapturePhotoOutput?
     func addPhotoOutput() -> Bool {
@@ -170,6 +215,8 @@ class KMMetalCamera: NSObject, KMMetalOutput {
         
         self.session.canAddOutput(output)
         self.photoOutput = output
+        self.session.commitConfiguration()
+        self.lock.signal()
         return true
     }
     

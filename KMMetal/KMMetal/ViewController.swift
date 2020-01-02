@@ -119,6 +119,11 @@ extension ViewController: KMFaceDetectorDelegate {
     }
 }
 extension ViewController: KMMetalCameraDelegate {
+    
+    func onCapturePhoto(texuture: KMTexture?) {
+        
+    }
+    
     func onCapture(sampleBuffer: CMSampleBuffer, output: AVCaptureOutput, connection: AVCaptureConnection) {
         self.faceDetector.onSamplebufferOutput(sampleBuffer, output: output, connection: connection)
     }
