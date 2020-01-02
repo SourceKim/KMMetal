@@ -13,26 +13,6 @@ extension CMSampleBuffer {
         
         guard let imageBuffer = CMSampleBufferGetImageBuffer(self) else { return nil } // TODO: 优化 & 输出直接用
         
-        let width = CVPixelBufferGetWidth(imageBuffer)
-        let height = CVPixelBufferGetHeight(imageBuffer)
-        
-        var cvMetalTextureOut: CVMetalTexture?
-        let result = CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault,
-                                                               textureCache,
-                                                               imageBuffer,
-                                                               nil,
-                                                               .bgra8Unorm, // camera ouput BGRA
-            width,
-            height,
-            0,
-            &cvMetalTextureOut)
-        
-        if result == kCVReturnSuccess,
-            let cvMetalTexture = cvMetalTextureOut,
-            let texture = CVMetalTextureGetTexture(cvMetalTexture) {
-            return texture
-        }
-        
-        return nil
+        return imageBuffer.toTexture(with: textureCache)
     }
 }

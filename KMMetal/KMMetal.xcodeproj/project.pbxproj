@@ -64,6 +64,7 @@
 		3BEAFA2D23BB3E7F007B4470 /* KMCropFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAFA2C23BB3E7F007B4470 /* KMCropFilter.swift */; };
 		3BEAFA2F23BB3E92007B4470 /* KMCropKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAFA2E23BB3E91007B4470 /* KMCropKernel.metal */; };
 		3BEAFA3223BD9E51007B4470 /* UIImage+Dlib.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAFA3023BD9E51007B4470 /* UIImage+Dlib.mm */; };
+		3BEAFA3423BDF0A2007B4470 /* MetalTexure+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAFA3323BDF0A2007B4470 /* MetalTexure+CVPixelBuffer.swift */; };
 		3BFA509823AA250300238AA3 /* KMTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA509723AA250300238AA3 /* KMTexture.swift */; };
 		3BFA509A23AA27F200238AA3 /* PassthroughShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA509923AA27F200238AA3 /* PassthroughShaders.metal */; };
 		3BFA50A023AB4C1500238AA3 /* KMMetalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA509F23AB4C1500238AA3 /* KMMetalImage.swift */; };
@@ -136,6 +137,7 @@
 		3BEAFA2E23BB3E91007B4470 /* KMCropKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMCropKernel.metal; sourceTree = "<group>"; };
 		3BEAFA3023BD9E51007B4470 /* UIImage+Dlib.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+Dlib.mm"; sourceTree = "<group>"; };
 		3BEAFA3123BD9E51007B4470 /* UIImage+Dlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Dlib.h"; sourceTree = "<group>"; };
+		3BEAFA3323BDF0A2007B4470 /* MetalTexure+CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MetalTexure+CVPixelBuffer.swift"; sourceTree = "<group>"; };
 		3BFA509723AA250300238AA3 /* KMTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMTexture.swift; sourceTree = "<group>"; };
 		3BFA509923AA27F200238AA3 /* PassthroughShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = PassthroughShaders.metal; sourceTree = "<group>"; };
 		3BFA509F23AB4C1500238AA3 /* KMMetalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalImage.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				3B0871E723A884A70082DC2D /* MetalTexture+UIImage.swift */,
 				3BFA50A123AB53FB00238AA3 /* MetalTexture+CGImage.swift */,
 				3B1242BB23AC729B008574AF /* MetalTexture+CMSampleBuffer.swift */,
+				3BEAFA3323BDF0A2007B4470 /* MetalTexure+CVPixelBuffer.swift */,
 			);
 			path = Ext;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				3BEAFA3223BD9E51007B4470 /* UIImage+Dlib.mm in Sources */,
 				3B2FBC1923BCB9AB001034BF /* DlibHelper.mm in Sources */,
 				3BEAFA2F23BB3E92007B4470 /* KMCropKernel.metal in Sources */,
+				3BEAFA3423BDF0A2007B4470 /* MetalTexure+CVPixelBuffer.swift in Sources */,
 				3B0C7FE523B509DA00222528 /* CGAffineTransform+Matrix.swift in Sources */,
 				3BE01CB623AA1E5B0057B987 /* KMMetalShared.swift in Sources */,
 				3B447A6E23B61FBF00A32F4C /* KMSharpenKernel.metal in Sources */,

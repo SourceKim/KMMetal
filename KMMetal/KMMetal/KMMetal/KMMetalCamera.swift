@@ -11,6 +11,7 @@ import AVFoundation
 protocol KMMetalCameraDelegate: AnyObject {
     func onCapture(sampleBuffer: CMSampleBuffer, output: AVCaptureOutput, connection: AVCaptureConnection)
     func onCapture(faceMetaObjects: [AVMetadataObject])
+    func onCapturePhoto(texuture: KMTexture?)
 }
 
 class KMMetalCamera: NSObject, KMMetalOutput {
@@ -59,22 +60,10 @@ class KMMetalCamera: NSObject, KMMetalOutput {
     }
     private var _isPause = false
     
-    var canTakePhoto: Bool {
-        get {
-            self.lock.wait()
-            let ctp = self._canTakePhoto
-            self.lock.signal()
-            return ctp
-        }
-        set {
-            self.lock.wait()
-            self._canTakePhoto = newValue
-            self.lock.signal()
-        }
+    var cameraPosition: AVCaptureDevice.Position {
+        return self.device.position
     }
-    private var _canTakePhoto = false
     
-    private var cameraPosition: AVCaptureDevice.Position
     var session: AVCaptureSession
     private var device: AVCaptureDevice
     private var input: AVCaptureInput
@@ -104,7 +93,6 @@ class KMMetalCamera: NSObject, KMMetalOutput {
         }
         
         self.session = AVCaptureSession()
-        self.cameraPosition = cameraPosition
         self.device = device
         self.input = input
         self.output = AVCaptureVideoDataOutput()
@@ -160,6 +148,40 @@ class KMMetalCamera: NSObject, KMMetalOutput {
         
     }
     
+    // MARK: - Photo ouput
+    private var photoOutput: AVCapturePhotoOutput?
+    func addPhotoOutput() -> Bool {
+        self.lock.wait()
+        
+        guard self.photoOutput == nil else {
+            self.lock.signal()
+            return false
+        }
+        
+        self.session.beginConfiguration()
+        
+        let output = AVCapturePhotoOutput()
+        
+        guard self.session.canAddOutput(output) else {
+            self.session.commitConfiguration()
+            self.lock.signal()
+            return false
+        }
+        
+        self.session.canAddOutput(output)
+        self.photoOutput = output
+        return true
+    }
+    
+    func takePhoto() {
+        self.lock.wait()
+        if let output = self.photoOutput {
+            output.capturePhoto(with: AVCapturePhotoSettings(format: [kCVPixelBufferPixelFormatTypeKey as String : kCVPixelFormatType_32BGRA]),
+                                delegate: self)
+        }
+        self.lock.signal()
+    }
+    
     func run() {
         self.lock.wait()
         self.session.startRunning()
@@ -212,5 +234,23 @@ extension KMMetalCamera: AVCaptureVideoDataOutputSampleBufferDelegate, AVCapture
     
     public func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
 //        print(#function)
+    }
+}
+
+extension KMMetalCamera: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput,
+                     didFinishProcessingPhoto photo: AVCapturePhoto,
+                     error: Error?) {
+        guard
+            let pixelBuffer = photo.pixelBuffer,
+            let metalTexture = pixelBuffer.toTexture(with: self.textureCache)
+        else {
+                self.del?.onCapturePhoto(texuture: nil)
+                return
+        }
+        
+        self.del?.onCapturePhoto(texuture: KMTexture(texture: metalTexture,
+                                                     cameraPosition: self.cameraPosition))
+        
     }
 }
