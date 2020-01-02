@@ -20,7 +20,7 @@ extension CGAffineTransform {
         
         let xValue = (toW - fromW * scale) / 2.0
         let yValue = (toH - fromH * scale) / 2.0
-        return Self.identity.translatedBy(x: xValue, y: yValue).scaledBy(x: scale, y: scale)
+        return CGAffineTransform.identity.translatedBy(x: xValue, y: yValue).scaledBy(x: scale, y: scale)
     }
 
     static func cropMaxtrix(fromSize: CGSize, toSize: CGSize) -> Self {

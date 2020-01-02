@@ -8,9 +8,8 @@
 
 #import "DlibHelper.h"
 
-#include <dlib/image_processing.h>
-#include <dlib/image_io.h>
-#import <UIKit/UIKit.h>
+#import "UIImage+Dlib.h"
+#include <dlib/image_processing/frontal_face_detector.h>
 
 @implementation DlibHelper {
     dlib::shape_predictor sp;
@@ -23,7 +22,7 @@
     dlib::deserialize(modelFileNameCString) >> sp;
 }
 
-- (NSArray<NSValue *> *)detect: (CMSampleBufferRef)sampleBuffer
+- (NSArray<NSArray<NSValue *> *> *)detect: (CMSampleBufferRef)sampleBuffer
                         inside: (NSArray<NSValue *> *)rects {
     
     dlib::array2d<dlib::bgr_pixel> img;
@@ -105,8 +104,49 @@
         position++;
     }
     CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
-    
+
     //3. Return
+    return landmarks.copy;
+}
+
+- (NSArray<NSArray<NSValue *> *> *)detect: (UIImage *)uiImage {
+    
+    dlib::array2d<dlib::bgr_pixel> img;
+
+    size_t height = uiImage.size.height;
+    size_t width = uiImage.size.width;
+    
+    img.set_size(height, width);
+    
+    // 1. detector
+    dlib::frontal_face_detector detector = dlib::get_frontal_face_detector();
+    
+    // 2. UIImage to Dlib-Image
+    UIImageToDlibImage(uiImage, img, true);
+    
+    // 3. Detect rects in img
+    std::vector<dlib::rectangle> rects = detector(img);
+    
+    // 4. Parse landmarks
+    NSMutableArray<NSArray<NSValue *> *> *landmarks = [NSMutableArray array];
+    
+    for (int i=0; i<rects.size(); i++) {
+        
+        dlib::full_object_detection shape = sp(img, rects[i]);
+        
+        NSMutableArray<NSValue *> *landmarksOfOneFace = [NSMutableArray array];
+        
+        for (int i = 0; i<shape.num_parts(); i++) {
+            dlib::point dlibPoint = shape.part(i);
+            CGPoint cgPoint = CGPointMake(CGFloat(dlibPoint.x() - 8), CGFloat(dlibPoint.y()));
+            NSValue *val = [NSValue valueWithCGPoint: cgPoint];
+            [landmarksOfOneFace addObject: val];
+//            draw_solid_circle(img, dlibPoint, 3, dlib::rgb_pixel(0, 255, 255));
+        }
+        [landmarks addObject: landmarksOfOneFace.copy];
+    }
+
+    // 5. Return
     return landmarks.copy;
 }
 

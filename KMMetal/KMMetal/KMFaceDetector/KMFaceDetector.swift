@@ -45,4 +45,9 @@ class KMFaceDetector {
             self.del?.onDetetionFinished(res: res)
         }
     }
+    
+    func detectStaticImage(uiimage: UIImage) {
+        let res = self.dlibHelper.detect(uiimage)
+        self.del?.onDetetionFinished(res: res)
+    }
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2020 苏金劲. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <CoreMedia/CoreMedia.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray<NSArray<NSValue *> *> *)detect: (CMSampleBufferRef)sampleBuffer
                         inside: (NSArray<NSValue *> *)rects;
+
+- (NSArray<NSArray<NSValue *> *> *)detect: (UIImage *)uiImage;
 
 @end
 

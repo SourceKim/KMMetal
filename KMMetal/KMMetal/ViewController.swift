@@ -10,6 +10,9 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
+    private lazy var imgV = UIImageView(frame: self.view.bounds)
+    private let img = UIImage(named: "img4.png")!
+    
     private let camera = KMMetalCamera(cameraPosition: .front, preset: .high)
     private let sourceImage = KMMetalImage(uiImage: UIImage(named: "img0.png")!)
     private lazy var metalView = KMMetalView()
@@ -29,16 +32,22 @@ class ViewController: UIViewController {
         self.faceDetector.setup()
         self.faceDetector.del = self
         
+        self.imgV.contentMode = .scaleAspectFit
+        self.view.addSubview(self.imgV)
+        
+        self.imgV.image = self.img
+        self.faceDetector.detectStaticImage(uiimage: self.img)
+        
 //        self.camera?.add(input: self.thinFaceFilter0)
 //        self.sourceImage.add(input: self.cropFilter)
 //        self.cropFilter.normalizedRect = KMNormalizedRect(x: 0, y: 0, width: 1, height: 0.5)
 //        self.cropFilter.add(input: self.metalView)
-        self.camera?.del = self
-        self.camera?.add(input: self.thinFaceFilter0)
-        self.thinFaceFilter0.add(input: self.thinFaceFilter1)
-        self.thinFaceFilter1.add(input: self.metalView)
+//        self.camera?.del = self
+//        self.camera?.add(input: self.thinFaceFilter0)
+//        self.thinFaceFilter0.add(input: self.thinFaceFilter1)
+//        self.thinFaceFilter1.add(input: self.metalView)
 //        self.camera?.add(input: self.metalView)
-        self.metalView.frame = self.view.bounds
+//        self.metalView.frame = self.view.bounds
 //        previewLayer = AVCaptureVideoPreviewLayer(session: self.camera!.session)
 //        previewLayer.videoGravity = .resizeAspectFill
 //        previewLayer.frame = self.view.bounds
@@ -47,9 +56,9 @@ class ViewController: UIViewController {
 //        self.sourceImage.add(input: self.lookupKernel)
 //        self.lookupKernel.add(input: self.metalView)
 //        self.sourceImage.add(input: self.metalView)
-        self.view.addSubview(self.metalView)
+//        self.view.addSubview(self.metalView)
         
-        self.camera?.run()
+//        self.camera?.run()
 //        DispatchQueue.main.asyncAfter(deadline: .now()) {
 //            self.sourceImage.process()
 //        }
@@ -66,8 +75,9 @@ class ViewController: UIViewController {
             v.font = UIFont.systemFont(ofSize: 10)
             v.textColor = .black
             v.text = "\(i)"
+            v.textAlignment = .center
             self.views.append(v)
-            self.metalView.addSubview(v)
+            self.imgV.addSubview(v)
         }
         
         self.intensitySlider.addTarget(self, action: #selector(ViewController.onSliderChanged(sender:)), for: .valueChanged)
@@ -96,15 +106,15 @@ extension ViewController: KMFaceDetectorDelegate {
         if let firstRes = res.first {
             
             DispatchQueue.main.async {
-                let matrix = CGAffineTransform.transformMatrix(fromSize: CGSize(width: 1080, height: 1920), toSize: self.metalView.bounds.size)
+                let matrix = CGAffineTransform.transformMatrix(fromSize: self.img.size, toSize: self.imgV.bounds.size)
                 for i in 0..<firstRes.count {
                     let p = firstRes[i].cgPointValue.applying(matrix)
                     self.views[i].center = p
                 }
             }
 
-            self.thinFaceFilter0.setParams(startPoint: firstRes[7].cgPointValue, radiusPoint: firstRes[5].cgPointValue, referencePoint: firstRes[28].cgPointValue)
-            self.thinFaceFilter1.setParams(startPoint: firstRes[9].cgPointValue, radiusPoint: firstRes[11].cgPointValue, referencePoint: firstRes[28].cgPointValue)
+//            self.thinFaceFilter0.setParams(startPoint: firstRes[7].cgPointValue, radiusPoint: firstRes[5].cgPointValue, referencePoint: firstRes[28].cgPointValue)
+//            self.thinFaceFilter1.setParams(startPoint: firstRes[9].cgPointValue, radiusPoint: firstRes[11].cgPointValue, referencePoint: firstRes[28].cgPointValue)
         }
     }
 }

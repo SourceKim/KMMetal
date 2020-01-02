@@ -63,6 +63,7 @@
 		3BE01CB623AA1E5B0057B987 /* KMMetalShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE01CB523AA1E5B0057B987 /* KMMetalShared.swift */; };
 		3BEAFA2D23BB3E7F007B4470 /* KMCropFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAFA2C23BB3E7F007B4470 /* KMCropFilter.swift */; };
 		3BEAFA2F23BB3E92007B4470 /* KMCropKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAFA2E23BB3E91007B4470 /* KMCropKernel.metal */; };
+		3BEAFA3223BD9E51007B4470 /* UIImage+Dlib.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAFA3023BD9E51007B4470 /* UIImage+Dlib.mm */; };
 		3BFA509823AA250300238AA3 /* KMTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA509723AA250300238AA3 /* KMTexture.swift */; };
 		3BFA509A23AA27F200238AA3 /* PassthroughShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA509923AA27F200238AA3 /* PassthroughShaders.metal */; };
 		3BFA50A023AB4C1500238AA3 /* KMMetalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA509F23AB4C1500238AA3 /* KMMetalImage.swift */; };
@@ -99,7 +100,7 @@
 		3B2FBC1723BCB9AB001034BF /* DlibHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DlibHelper.h; sourceTree = "<group>"; };
 		3B2FBC1823BCB9AB001034BF /* DlibHelper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DlibHelper.mm; sourceTree = "<group>"; };
 		3B2FBC1A23BCBA17001034BF /* libdlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdlib.a; sourceTree = "<group>"; };
-		3B2FBC1B23BCBA17001034BF /* shape_predictor_68_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = shape_predictor_68_face_landmarks.dat; sourceTree = "<group>"; };
+		3B2FBC1B23BCBA17001034BF /* shape_predictor_68_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = text; path = shape_predictor_68_face_landmarks.dat; sourceTree = "<group>"; };
 		3B2FBC1F23BCCC3A001034BF /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		3B4479E823AE0EE200A32F4C /* lookup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup.png; sourceTree = "<group>"; };
 		3B4479E923AE0EE200A32F4C /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
@@ -133,6 +134,8 @@
 		3BE01CB523AA1E5B0057B987 /* KMMetalShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalShared.swift; sourceTree = "<group>"; };
 		3BEAFA2C23BB3E7F007B4470 /* KMCropFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMCropFilter.swift; sourceTree = "<group>"; };
 		3BEAFA2E23BB3E91007B4470 /* KMCropKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMCropKernel.metal; sourceTree = "<group>"; };
+		3BEAFA3023BD9E51007B4470 /* UIImage+Dlib.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+Dlib.mm"; sourceTree = "<group>"; };
+		3BEAFA3123BD9E51007B4470 /* UIImage+Dlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Dlib.h"; sourceTree = "<group>"; };
 		3BFA509723AA250300238AA3 /* KMTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMTexture.swift; sourceTree = "<group>"; };
 		3BFA509923AA27F200238AA3 /* PassthroughShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = PassthroughShaders.metal; sourceTree = "<group>"; };
 		3BFA509F23AB4C1500238AA3 /* KMMetalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalImage.swift; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 				3B2FBC1723BCB9AB001034BF /* DlibHelper.h */,
 				3B2FBC1823BCB9AB001034BF /* DlibHelper.mm */,
 				3B2FBC1623BCB9AA001034BF /* KMMetal-Bridging-Header.h */,
+				3BEAFA3023BD9E51007B4470 /* UIImage+Dlib.mm */,
+				3BEAFA3123BD9E51007B4470 /* UIImage+Dlib.h */,
 			);
 			path = KMFaceDetector;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BEAFA3223BD9E51007B4470 /* UIImage+Dlib.mm in Sources */,
 				3B2FBC1923BCB9AB001034BF /* DlibHelper.mm in Sources */,
 				3BEAFA2F23BB3E92007B4470 /* KMCropKernel.metal in Sources */,
 				3B0C7FE523B509DA00222528 /* CGAffineTransform+Matrix.swift in Sources */,
