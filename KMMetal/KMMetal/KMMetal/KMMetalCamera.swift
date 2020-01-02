@@ -9,7 +9,8 @@ import UIKit
 import AVFoundation
 
 protocol KMMetalCameraDelegate: AnyObject {
-    func onCapture(sampleBuffer: CMSampleBuffer)
+    func onCapture(sampleBuffer: CMSampleBuffer, output: AVCaptureOutput, connection: AVCaptureConnection)
+    func onCapture(faceMetaObjects: [AVMetadataObject])
 }
 
 class KMMetalCamera: NSObject, KMMetalOutput {
@@ -78,9 +79,15 @@ class KMMetalCamera: NSObject, KMMetalOutput {
     private var device: AVCaptureDevice
     private var input: AVCaptureInput
     private var output: AVCaptureVideoDataOutput
-    
+    private var metaOutput: AVCaptureMetadataOutput?
     private let outputQueue = DispatchQueue(
       label: "com.kedc.KMMetal.videoOutput",
+      qos: .userInitiated,
+      attributes: [],
+      autoreleaseFrequency: .workItem)
+    
+    private let metaOutputQueue = DispatchQueue(
+      label: "com.kedc.KMMetal.metalOutput",
       qos: .userInitiated,
       attributes: [],
       autoreleaseFrequency: .workItem)
@@ -88,7 +95,8 @@ class KMMetalCamera: NSObject, KMMetalOutput {
     private var textureCache: CVMetalTextureCache!
     
     init?(cameraPosition: AVCaptureDevice.Position = .back,
-          preset: AVCaptureSession.Preset = .high) {
+          preset: AVCaptureSession.Preset = .high,
+          needCaptureMetadata: Bool = true) {
         
         guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: cameraPosition),
             let input = try? AVCaptureDeviceInput(device: device) else {
@@ -124,15 +132,31 @@ class KMMetalCamera: NSObject, KMMetalOutput {
             self.session.commitConfiguration()
             return nil
         }
+        
         self.session.addOutput(self.output)
+        
+        if needCaptureMetadata {
+            let mo = AVCaptureMetadataOutput()
+            if self.session.canAddOutput(mo) {
+                self.session.addOutput(mo)
+            }
+            self.metaOutput = mo
+            self.metaOutput?.setMetadataObjectsDelegate(self, queue: self.metaOutputQueue)
+        }
+
         
         guard let connection = self.output.connection(with: .video) else {
                 self.session.commitConfiguration()
                 return nil
         }
         connection.videoOrientation = .portrait
+//        connection.isVideoMirrored = true
         
         self.session.commitConfiguration()
+        
+        // availableMetadataObjectTypes change when output is added to session.
+        // before it is added, availableMetadataObjectTypes is empty
+        metaOutput?.metadataObjectTypes = [AVMetadataObject.ObjectType.face]
         
     }
     
@@ -150,11 +174,13 @@ class KMMetalCamera: NSObject, KMMetalOutput {
 
 }
 
-extension KMMetalCamera: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension KMMetalCamera: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureMetadataOutputObjectsDelegate {
     
     public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
-        self.del?.onCapture(sampleBuffer: sampleBuffer)
+        self.lock.wait()
+        self.del?.onCapture(sampleBuffer: sampleBuffer, output: output, connection: connection)
+        self.lock.signal()
         
         // Video
         self.lock.wait()
@@ -178,6 +204,10 @@ extension KMMetalCamera: AVCaptureVideoDataOutputSampleBufferDelegate {
         for child in childs {
             child.next(texture: outKMTexture)
         }
+    }
+    
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        self.del?.onCapture(faceMetaObjects: metadataObjects)
     }
     
     public func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
