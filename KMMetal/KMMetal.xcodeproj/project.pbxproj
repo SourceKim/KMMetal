@@ -24,6 +24,7 @@
 		3B0C7FE023B5099000222528 /* KMThinFaceKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C7FDE23B5098F00222528 /* KMThinFaceKernel.metal */; };
 		3B0C7FE423B509DA00222528 /* KMFaceDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C7FE223B509DA00222528 /* KMFaceDetector.swift */; };
 		3B0C7FE523B509DA00222528 /* CGAffineTransform+Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C7FE323B509DA00222528 /* CGAffineTransform+Matrix.swift */; };
+		3B122BCD23BFDC1F00079B16 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B122BCC23BFDC1F00079B16 /* opencv2.framework */; };
 		3B1242B623AB9715008574AF /* KMBrightnessKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242B523AB9715008574AF /* KMBrightnessKernel.metal */; };
 		3B1242B823AB9793008574AF /* KMBrightnessFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242B723AB9793008574AF /* KMBrightnessFilter.swift */; };
 		3B1242BA23AB99AE008574AF /* KMMetalCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242B923AB99AE008574AF /* KMMetalCamera.swift */; };
@@ -94,6 +95,7 @@
 		3B0C7FDE23B5098F00222528 /* KMThinFaceKernel.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = KMThinFaceKernel.metal; sourceTree = "<group>"; };
 		3B0C7FE223B509DA00222528 /* KMFaceDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMFaceDetector.swift; sourceTree = "<group>"; };
 		3B0C7FE323B509DA00222528 /* CGAffineTransform+Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Matrix.swift"; sourceTree = "<group>"; };
+		3B122BCC23BFDC1F00079B16 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		3B1242B523AB9715008574AF /* KMBrightnessKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMBrightnessKernel.metal; sourceTree = "<group>"; };
 		3B1242B723AB9793008574AF /* KMBrightnessFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMBrightnessFilter.swift; sourceTree = "<group>"; };
 		3B1242B923AB99AE008574AF /* KMMetalCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalCamera.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B122BCD23BFDC1F00079B16 /* opencv2.framework in Frameworks */,
 				3B2FBC1C23BCBA17001034BF /* libdlib.a in Frameworks */,
 				3B2FBC2023BCCC3A001034BF /* Accelerate.framework in Frameworks */,
 			);
@@ -259,6 +262,7 @@
 		3B0C7FE123B509DA00222528 /* KMFaceDetector */ = {
 			isa = PBXGroup;
 			children = (
+				3B122BCC23BFDC1F00079B16 /* opencv2.framework */,
 				3B2FBC1523BCB6C3001034BF /* dlib */,
 				3B0C7FE223B509DA00222528 /* KMFaceDetector.swift */,
 				3B0C7FE323B509DA00222528 /* CGAffineTransform+Matrix.swift */,
@@ -697,6 +701,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NYQACL8B77;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KMMetal/KMFaceDetector",
+				);
 				HEADER_SEARCH_PATHS = "${SRCROOT}/KMMetal/KMFaceDetector/dlib/";
 				INFOPLIST_FILE = KMMetal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -726,6 +735,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NYQACL8B77;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/KMMetal/KMFaceDetector",
+				);
 				HEADER_SEARCH_PATHS = "${SRCROOT}/KMMetal/KMFaceDetector/dlib/";
 				INFOPLIST_FILE = KMMetal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
