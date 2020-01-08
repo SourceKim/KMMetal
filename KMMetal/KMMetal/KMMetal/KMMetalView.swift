@@ -26,8 +26,8 @@ class KMMetalView: MTKView, KMMetalInput {
     
     private let lock = DispatchSemaphore(value: 1)
     
-    var rotation = KMTextureRotation.Rotate0Degrees
-    private var internal_rotation = KMTextureRotation.Rotate0Degrees
+    var rotation = KMTextureRotation.Rotate270Degrees
+    private var internal_rotation = KMTextureRotation.Rotate270Degrees
     
     var isMirror = false
     private var internal_isMirror = false

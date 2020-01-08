@@ -137,7 +137,7 @@ class KMMetalCamera: NSObject, KMMetalOutput {
                 self.session.commitConfiguration()
                 return nil
         }
-        connection.videoOrientation = .portrait
+        connection.videoOrientation = .landscapeRight
 //        connection.isVideoMirrored = true
         
         self.session.commitConfiguration()

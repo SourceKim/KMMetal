@@ -1,0 +1,6 @@
+framework module Pods_KMMetal {
+  umbrella header "Pods-KMMetal-umbrella.h"
+
+  export *
+  module * { export * }
+}

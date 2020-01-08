@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import FirebaseMLVision
 
 class ViewController: UIViewController {
     
@@ -17,7 +18,7 @@ class ViewController: UIViewController {
     private let sourceImage = KMMetalImage(uiImage: UIImage(named: "img0.png")!)
     private lazy var metalView = KMMetalView()
     private let brightnessKernel = KMBrightnessFilter()
-    private let faceDetector = KMFaceDetector()
+//    private let faceDetector = KMFaceDetector()
     let thinFaceFilter0 = KMThinFaceFilter()
     let thinFaceFilter1 = KMThinFaceFilter()
     let skinSmoothFilter = KMSkinSmoothFilter()
@@ -29,8 +30,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.faceDetector.setup()
-        self.faceDetector.del = self
+//        self.faceDetector.setup()
+//        self.faceDetector.del = self
 //
 //        self.imgV.contentMode = .scaleAspectFit
 //        self.view.addSubview(self.imgV)
@@ -58,7 +59,6 @@ class ViewController: UIViewController {
 //        self.sourceImage.add(input: self.metalView)
         self.view.addSubview(self.metalView)
         
-        self.camera?.run()
 //        DispatchQueue.main.asyncAfter(deadline: .now()) {
 //            self.sourceImage.process()
 //        }
@@ -68,7 +68,7 @@ class ViewController: UIViewController {
 //
 //        self.camera?.run()
         
-        for i in 0..<100 {
+        for i in 0..<150 {
             let v = UILabel()
             v.frame = CGRect(x: 0, y: 0, width: 35, height: 10)
 //            v.backgroundColor = .systemPurple
@@ -91,6 +91,16 @@ class ViewController: UIViewController {
 //        self.brightnessKernel.add(input: self.metalView)
 //        
 //        self.sourceImage.process()
+        
+        let opt = VisionFaceDetectorOptions()
+        opt.performanceMode = .fast
+        opt.landmarkMode = .none
+        opt.contourMode = .all
+        self.detector = self.vision.faceDetector(options: opt)
+        self.meta = VisionImageMetadata()
+        self.meta.orientation = .rightBottom
+        
+        self.camera?.run()
 
     }
     
@@ -99,26 +109,30 @@ class ViewController: UIViewController {
         self.thinFaceFilter1.intensity = sender.value
     }
 
+    let vision = Vision.vision()
+    var detector:VisionFaceDetector!
+    var meta: VisionImageMetadata!
+    lazy var matrix = CGAffineTransform.transformMatrix(fromSize: CGSize(width: 1080, height: 1920), toSize: self.metalView.bounds.size)
 }
 
-extension ViewController: KMFaceDetectorDelegate {
-    func onDetetionFinished(res: [[NSValue]]) {
-        if let firstRes = res.first {
-            
-            DispatchQueue.main.async {
-                let matrix = CGAffineTransform.transformMatrix(fromSize: CGSize(width: 1080, height: 1920), toSize: self.metalView.bounds.size)
-                for i in 0..<firstRes.count {
-                    var p = firstRes[i].cgPointValue
-                    p.x = 1080 - p.x
-                    self.views[i].center = p.applying(matrix)
-                }
-            }
-
-            self.thinFaceFilter0.setParams(startPoint: firstRes[6].cgPointValue, radiusPoint: firstRes[4].cgPointValue, referencePoint: firstRes[28].cgPointValue)
-            self.thinFaceFilter1.setParams(startPoint: firstRes[10].cgPointValue, radiusPoint: firstRes[12].cgPointValue, referencePoint: firstRes[28].cgPointValue)
-        }
-    }
-}
+//extension ViewController: KMFaceDetectorDelegate {
+//    func onDetetionFinished(res: [[NSValue]]) {
+//        if let firstRes = res.first {
+//
+//            DispatchQueue.main.async {
+//                let matrix = CGAffineTransform.transformMatrix(fromSize: CGSize(width: 1080, height: 1920), toSize: self.metalView.bounds.size)
+//                for i in 0..<firstRes.count {
+//                    var p = firstRes[i].cgPointValue
+//                    p.x = 1080 - p.x
+//                    self.views[i].center = p.applying(matrix)
+//                }
+//            }
+//
+//            self.thinFaceFilter0.setParams(startPoint: firstRes[6].cgPointValue, radiusPoint: firstRes[4].cgPointValue, referencePoint: firstRes[28].cgPointValue)
+//            self.thinFaceFilter1.setParams(startPoint: firstRes[10].cgPointValue, radiusPoint: firstRes[12].cgPointValue, referencePoint: firstRes[28].cgPointValue)
+//        }
+//    }
+//}
 extension ViewController: KMMetalCameraDelegate {
     
     func onCapturePhoto(texuture: KMTexture?) {
@@ -126,11 +140,43 @@ extension ViewController: KMMetalCameraDelegate {
     }
     
     func onCapture(sampleBuffer: CMSampleBuffer, output: AVCaptureOutput, connection: AVCaptureConnection) {
-        self.faceDetector.onSamplebufferOutput(sampleBuffer, output: output, connection: connection)
+//        self.faceDetector.onSamplebufferOutput(sampleBuffer, output: output, connection: connection)
+        NSLog("a")
+        let img = VisionImage(buffer: sampleBuffer)
+        img.metadata = self.meta
+        let face = try! self.detector.results(in: img)
+        NSLog("b: \(face.count)")
+        DispatchQueue.main.async {
+        if let firstFace = face.first {
+            var idx = 0
+            if let faceT = firstFace.contour(ofType: .all)?.points {
+                for p in faceT {
+                    let newP = CGPoint(x: CGFloat(1080 - p.y.floatValue), y: CGFloat(1920 - p.x.floatValue))
+                    self.views[idx].center = newP.applying(self.matrix)
+                    idx += 1
+                }
+            }
+        }
+        }
+//        for i in 1..<9 {
+//            let ori = VisionDetectorImageOrientation(rawValue: UInt(i))
+//            let mt = VisionImageMetadata()
+//            mt.orientation = ori!
+//            img.metadata = mt
+//            let face = try! self.detector.results(in: img)
+//            if face.count != 0 {
+//                print(i)
+//            }
+//        }
+        
+//        self.detector.process(img) { (face, err) in
+//            print(face?.count)
+//        }
+        
     }
     
     func onCapture(faceMetaObjects: [AVMetadataObject]) {
-        self.faceDetector.onMetadataObjectsOuput(faceMetaObjects)
+//        self.faceDetector.onMetadataObjectsOuput(faceMetaObjects)
     }
     
     func onCapture(sampleBuffer: CMSampleBuffer) {

@@ -22,17 +22,12 @@
 		3B0871EA23A889B20082DC2D /* KMMetalFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0871E923A889B20082DC2D /* KMMetalFilter.swift */; };
 		3B0C7FDF23B5099000222528 /* KMThinFaceFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C7FDD23B5098F00222528 /* KMThinFaceFilter.swift */; };
 		3B0C7FE023B5099000222528 /* KMThinFaceKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C7FDE23B5098F00222528 /* KMThinFaceKernel.metal */; };
-		3B0C7FE423B509DA00222528 /* KMFaceDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C7FE223B509DA00222528 /* KMFaceDetector.swift */; };
-		3B0C7FE523B509DA00222528 /* CGAffineTransform+Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0C7FE323B509DA00222528 /* CGAffineTransform+Matrix.swift */; };
-		3B122BCD23BFDC1F00079B16 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B122BCC23BFDC1F00079B16 /* opencv2.framework */; };
+		3B0FDF9523C4ED6300E27761 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B0FDF9423C4ED6300E27761 /* GoogleService-Info.plist */; };
+		3B0FDF9723C503FE00E27761 /* CGAffineTransform+Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0FDF9623C503FE00E27761 /* CGAffineTransform+Matrix.swift */; };
 		3B1242B623AB9715008574AF /* KMBrightnessKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242B523AB9715008574AF /* KMBrightnessKernel.metal */; };
 		3B1242B823AB9793008574AF /* KMBrightnessFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242B723AB9793008574AF /* KMBrightnessFilter.swift */; };
 		3B1242BA23AB99AE008574AF /* KMMetalCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242B923AB99AE008574AF /* KMMetalCamera.swift */; };
 		3B1242BC23AC729B008574AF /* MetalTexture+CMSampleBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1242BB23AC729B008574AF /* MetalTexture+CMSampleBuffer.swift */; };
-		3B1F56DD23BE3DEE0022DA6B /* shape_predictor_81_face_landmarks.dat in Resources */ = {isa = PBXBuildFile; fileRef = 3B1F56DC23BE3D820022DA6B /* shape_predictor_81_face_landmarks.dat */; };
-		3B2FBC1923BCB9AB001034BF /* DlibHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B2FBC1823BCB9AB001034BF /* DlibHelper.mm */; };
-		3B2FBC1C23BCBA17001034BF /* libdlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2FBC1A23BCBA17001034BF /* libdlib.a */; };
-		3B2FBC1D23BCBA17001034BF /* shape_predictor_68_face_landmarks.dat in Resources */ = {isa = PBXBuildFile; fileRef = 3B2FBC1B23BCBA17001034BF /* shape_predictor_68_face_landmarks.dat */; };
 		3B2FBC2023BCCC3A001034BF /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2FBC1F23BCCC3A001034BF /* Accelerate.framework */; };
 		3B4479ED23AE0EE200A32F4C /* lookup.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B4479E823AE0EE200A32F4C /* lookup.png */; };
 		3B4479EE23AE0EE200A32F4C /* lookup_miss_etikate.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B4479E923AE0EE200A32F4C /* lookup_miss_etikate.png */; };
@@ -65,12 +60,12 @@
 		3BE01CB623AA1E5B0057B987 /* KMMetalShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE01CB523AA1E5B0057B987 /* KMMetalShared.swift */; };
 		3BEAFA2D23BB3E7F007B4470 /* KMCropFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAFA2C23BB3E7F007B4470 /* KMCropFilter.swift */; };
 		3BEAFA2F23BB3E92007B4470 /* KMCropKernel.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAFA2E23BB3E91007B4470 /* KMCropKernel.metal */; };
-		3BEAFA3223BD9E51007B4470 /* UIImage+Dlib.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAFA3023BD9E51007B4470 /* UIImage+Dlib.mm */; };
 		3BEAFA3423BDF0A2007B4470 /* MetalTexure+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAFA3323BDF0A2007B4470 /* MetalTexure+CVPixelBuffer.swift */; };
 		3BFA509823AA250300238AA3 /* KMTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA509723AA250300238AA3 /* KMTexture.swift */; };
 		3BFA509A23AA27F200238AA3 /* PassthroughShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA509923AA27F200238AA3 /* PassthroughShaders.metal */; };
 		3BFA50A023AB4C1500238AA3 /* KMMetalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA509F23AB4C1500238AA3 /* KMMetalImage.swift */; };
 		3BFA50A223AB53FB00238AA3 /* MetalTexture+CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA50A123AB53FB00238AA3 /* MetalTexture+CGImage.swift */; };
+		AC72C3CCC02EB2D189E1F88F /* Pods_KMMetal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B305A1DF36A6C7C54A23EF7 /* Pods_KMMetal.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,19 +88,12 @@
 		3B0871E923A889B20082DC2D /* KMMetalFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalFilter.swift; sourceTree = "<group>"; };
 		3B0C7FDD23B5098F00222528 /* KMThinFaceFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMThinFaceFilter.swift; sourceTree = "<group>"; };
 		3B0C7FDE23B5098F00222528 /* KMThinFaceKernel.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = KMThinFaceKernel.metal; sourceTree = "<group>"; };
-		3B0C7FE223B509DA00222528 /* KMFaceDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMFaceDetector.swift; sourceTree = "<group>"; };
-		3B0C7FE323B509DA00222528 /* CGAffineTransform+Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Matrix.swift"; sourceTree = "<group>"; };
-		3B122BCC23BFDC1F00079B16 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		3B0FDF9423C4ED6300E27761 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3B0FDF9623C503FE00E27761 /* CGAffineTransform+Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGAffineTransform+Matrix.swift"; path = "KMFaceDetector/CGAffineTransform+Matrix.swift"; sourceTree = "<group>"; };
 		3B1242B523AB9715008574AF /* KMBrightnessKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMBrightnessKernel.metal; sourceTree = "<group>"; };
 		3B1242B723AB9793008574AF /* KMBrightnessFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMBrightnessFilter.swift; sourceTree = "<group>"; };
 		3B1242B923AB99AE008574AF /* KMMetalCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalCamera.swift; sourceTree = "<group>"; };
 		3B1242BB23AC729B008574AF /* MetalTexture+CMSampleBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MetalTexture+CMSampleBuffer.swift"; sourceTree = "<group>"; };
-		3B1F56DC23BE3D820022DA6B /* shape_predictor_81_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = shape_predictor_81_face_landmarks.dat; sourceTree = "<group>"; };
-		3B2FBC1623BCB9AA001034BF /* KMMetal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KMMetal-Bridging-Header.h"; sourceTree = "<group>"; };
-		3B2FBC1723BCB9AB001034BF /* DlibHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DlibHelper.h; sourceTree = "<group>"; };
-		3B2FBC1823BCB9AB001034BF /* DlibHelper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DlibHelper.mm; sourceTree = "<group>"; };
-		3B2FBC1A23BCBA17001034BF /* libdlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdlib.a; sourceTree = "<group>"; };
-		3B2FBC1B23BCBA17001034BF /* shape_predictor_68_face_landmarks.dat */ = {isa = PBXFileReference; lastKnownFileType = text; path = shape_predictor_68_face_landmarks.dat; sourceTree = "<group>"; };
 		3B2FBC1F23BCCC3A001034BF /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		3B4479E823AE0EE200A32F4C /* lookup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup.png; sourceTree = "<group>"; };
 		3B4479E923AE0EE200A32F4C /* lookup_miss_etikate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lookup_miss_etikate.png; sourceTree = "<group>"; };
@@ -139,13 +127,14 @@
 		3BE01CB523AA1E5B0057B987 /* KMMetalShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalShared.swift; sourceTree = "<group>"; };
 		3BEAFA2C23BB3E7F007B4470 /* KMCropFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMCropFilter.swift; sourceTree = "<group>"; };
 		3BEAFA2E23BB3E91007B4470 /* KMCropKernel.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = KMCropKernel.metal; sourceTree = "<group>"; };
-		3BEAFA3023BD9E51007B4470 /* UIImage+Dlib.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+Dlib.mm"; sourceTree = "<group>"; };
-		3BEAFA3123BD9E51007B4470 /* UIImage+Dlib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Dlib.h"; sourceTree = "<group>"; };
 		3BEAFA3323BDF0A2007B4470 /* MetalTexure+CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MetalTexure+CVPixelBuffer.swift"; sourceTree = "<group>"; };
 		3BFA509723AA250300238AA3 /* KMTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMTexture.swift; sourceTree = "<group>"; };
 		3BFA509923AA27F200238AA3 /* PassthroughShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = PassthroughShaders.metal; sourceTree = "<group>"; };
 		3BFA509F23AB4C1500238AA3 /* KMMetalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMMetalImage.swift; sourceTree = "<group>"; };
 		3BFA50A123AB53FB00238AA3 /* MetalTexture+CGImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MetalTexture+CGImage.swift"; sourceTree = "<group>"; };
+		4EEC7A01F51596F26072DE7F /* Pods-KMMetal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMMetal.debug.xcconfig"; path = "Target Support Files/Pods-KMMetal/Pods-KMMetal.debug.xcconfig"; sourceTree = "<group>"; };
+		9B305A1DF36A6C7C54A23EF7 /* Pods_KMMetal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KMMetal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF8117D56BF0F59669A9E1A2 /* Pods-KMMetal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KMMetal.release.xcconfig"; path = "Target Support Files/Pods-KMMetal/Pods-KMMetal.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,9 +142,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B122BCD23BFDC1F00079B16 /* opencv2.framework in Frameworks */,
-				3B2FBC1C23BCBA17001034BF /* libdlib.a in Frameworks */,
 				3B2FBC2023BCCC3A001034BF /* Accelerate.framework in Frameworks */,
+				AC72C3CCC02EB2D189E1F88F /* Pods_KMMetal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +165,7 @@
 				3B0871C123A879BA0082DC2D /* KMMetal */,
 				3B0871C023A879BA0082DC2D /* Products */,
 				3B2FBC1E23BCCC3A001034BF /* Frameworks */,
+				C7231242CCBF7497A09E520E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -191,7 +180,7 @@
 		3B0871C123A879BA0082DC2D /* KMMetal */ = {
 			isa = PBXGroup;
 			children = (
-				3B0C7FE123B509DA00222528 /* KMFaceDetector */,
+				3B0FDF9623C503FE00E27761 /* CGAffineTransform+Matrix.swift */,
 				3B0871D923A8834C0082DC2D /* res */,
 				3B0871D623A882130082DC2D /* KMMetal */,
 				3B0871C223A879BA0082DC2D /* AppDelegate.swift */,
@@ -199,6 +188,7 @@
 				3B0871CB23A879BB0082DC2D /* Assets.xcassets */,
 				3B0871CD23A879BB0082DC2D /* LaunchScreen.storyboard */,
 				3B0871D023A879BB0082DC2D /* Info.plist */,
+				3B0FDF9423C4ED6300E27761 /* GoogleService-Info.plist */,
 			);
 			path = KMMetal;
 			sourceTree = "<group>";
@@ -259,22 +249,6 @@
 			path = ThinFace;
 			sourceTree = "<group>";
 		};
-		3B0C7FE123B509DA00222528 /* KMFaceDetector */ = {
-			isa = PBXGroup;
-			children = (
-				3B122BCC23BFDC1F00079B16 /* opencv2.framework */,
-				3B2FBC1523BCB6C3001034BF /* dlib */,
-				3B0C7FE223B509DA00222528 /* KMFaceDetector.swift */,
-				3B0C7FE323B509DA00222528 /* CGAffineTransform+Matrix.swift */,
-				3B2FBC1723BCB9AB001034BF /* DlibHelper.h */,
-				3B2FBC1823BCB9AB001034BF /* DlibHelper.mm */,
-				3B2FBC1623BCB9AA001034BF /* KMMetal-Bridging-Header.h */,
-				3BEAFA3023BD9E51007B4470 /* UIImage+Dlib.mm */,
-				3BEAFA3123BD9E51007B4470 /* UIImage+Dlib.h */,
-			);
-			path = KMFaceDetector;
-			sourceTree = "<group>";
-		};
 		3B1242B423AB96FA008574AF /* Kernel */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,20 +270,11 @@
 			path = Kernel;
 			sourceTree = "<group>";
 		};
-		3B2FBC1523BCB6C3001034BF /* dlib */ = {
-			isa = PBXGroup;
-			children = (
-				3B2FBC1A23BCBA17001034BF /* libdlib.a */,
-				3B1F56DC23BE3D820022DA6B /* shape_predictor_81_face_landmarks.dat */,
-				3B2FBC1B23BCBA17001034BF /* shape_predictor_68_face_landmarks.dat */,
-			);
-			path = dlib;
-			sourceTree = "<group>";
-		};
 		3B2FBC1E23BCCC3A001034BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				3B2FBC1F23BCCC3A001034BF /* Accelerate.framework */,
+				9B305A1DF36A6C7C54A23EF7 /* Pods_KMMetal.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -432,6 +397,15 @@
 			path = Crop;
 			sourceTree = "<group>";
 		};
+		C7231242CCBF7497A09E520E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4EEC7A01F51596F26072DE7F /* Pods-KMMetal.debug.xcconfig */,
+				DF8117D56BF0F59669A9E1A2 /* Pods-KMMetal.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -439,6 +413,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B0871D323A879BB0082DC2D /* Build configuration list for PBXNativeTarget "KMMetal" */;
 			buildPhases = (
+				E2C3EADB3F26D0C6D45CDB18 /* [CP] Check Pods Manifest.lock */,
 				3B0871BB23A879BA0082DC2D /* Sources */,
 				3B0871BC23A879BA0082DC2D /* Frameworks */,
 				3B0871BD23A879BA0082DC2D /* Resources */,
@@ -492,11 +467,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B0871CF23A879BB0082DC2D /* LaunchScreen.storyboard in Resources */,
-				3B1F56DD23BE3DEE0022DA6B /* shape_predictor_81_face_landmarks.dat in Resources */,
+				3B0FDF9523C4ED6300E27761 /* GoogleService-Info.plist in Resources */,
 				3B0871E123A8834C0082DC2D /* img2.png in Resources */,
 				3B4479F123AE0EE200A32F4C /* lookup_soft_elegance_2.png in Resources */,
 				3B0871E323A8834C0082DC2D /* img1.png in Resources */,
-				3B2FBC1D23BCBA17001034BF /* shape_predictor_68_face_landmarks.dat in Resources */,
 				3B0871E223A8834C0082DC2D /* img0.png in Resources */,
 				3B0871CC23A879BB0082DC2D /* Assets.xcassets in Resources */,
 				3B0871DF23A8834C0082DC2D /* img4.png in Resources */,
@@ -510,16 +484,38 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E2C3EADB3F26D0C6D45CDB18 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KMMetal-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3B0871BB23A879BA0082DC2D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BEAFA3223BD9E51007B4470 /* UIImage+Dlib.mm in Sources */,
-				3B2FBC1923BCB9AB001034BF /* DlibHelper.mm in Sources */,
 				3BEAFA2F23BB3E92007B4470 /* KMCropKernel.metal in Sources */,
 				3BEAFA3423BDF0A2007B4470 /* MetalTexure+CVPixelBuffer.swift in Sources */,
-				3B0C7FE523B509DA00222528 /* CGAffineTransform+Matrix.swift in Sources */,
 				3BE01CB623AA1E5B0057B987 /* KMMetalShared.swift in Sources */,
 				3B447A6E23B61FBF00A32F4C /* KMSharpenKernel.metal in Sources */,
 				3B447A5D23B5FC5400A32F4C /* KMContrastFilter.swift in Sources */,
@@ -538,13 +534,13 @@
 				3B447A6223B5FCE100A32F4C /* KMWhiteBalanceFilter.swift in Sources */,
 				3B447A5723B5FA0000A32F4C /* KMSaturationFilter.swift in Sources */,
 				3B447A7C23B77E2300A32F4C /* KMBilateralBlurFilter.swift in Sources */,
+				3B0FDF9723C503FE00E27761 /* CGAffineTransform+Matrix.swift in Sources */,
 				3B447A6C23B61F5200A32F4C /* KMSharpenFilter.swift in Sources */,
 				3B447A4D23B4E84400A32F4C /* KMExposureFilter.swift in Sources */,
 				3B447A4F23B4E89F00A32F4C /* KMExposureKernel.metal in Sources */,
 				3B1242B623AB9715008574AF /* KMBrightnessKernel.metal in Sources */,
 				3B1242BC23AC729B008574AF /* MetalTexture+CMSampleBuffer.swift in Sources */,
 				3B0871E523A8845F0082DC2D /* KMMetalResourceLoader.swift in Sources */,
-				3B0C7FE423B509DA00222528 /* KMFaceDetector.swift in Sources */,
 				3B447A7323B778A000A32F4C /* KMSobelFilter.swift in Sources */,
 				3B0871D823A882270082DC2D /* KMMetalView.swift in Sources */,
 				3B1242BA23AB99AE008574AF /* KMMetalCamera.swift in Sources */,
@@ -695,6 +691,7 @@
 		};
 		3B0871D423A879BB0082DC2D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4EEC7A01F51596F26072DE7F /* Pods-KMMetal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -729,6 +726,7 @@
 		};
 		3B0871D523A879BB0082DC2D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF8117D56BF0F59669A9E1A2 /* Pods-KMMetal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
